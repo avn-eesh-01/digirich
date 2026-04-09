@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | DIGIRICH - India's Digital Gold Authority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --color-background: #f9f9f9;
+      --color-surface: #ffffff;
+      --color-surface-low: #f3f3f3;
+      --color-surface-mid: #eeeeee;
+      --color-text: #1a1c1c;
+      --color-text-muted: #4d4635;
+      --color-primary: #735c00;
+      --color-primary-bright: #d4af37;
+      --color-secondary-bg: #f7e1a6;
+      --color-secondary-text: #736334;
+      --color-outline: #d0c5af;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-strong: 0 18px 45px rgba(0, 0, 0, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      --container: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-background);
+      color: var(--color-text);
+      font-family: "Inter", sans-serif;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-muted {
+      background: var(--color-surface-low);
+    }
+
+    .section-alt {
+      background: var(--color-surface-mid);
+    }
+
+    .headline-font {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .gilded-gradient {
+      background: linear-gradient(135deg, #735c00 0%, #d4af37 100%);
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(249, 249, 249, 0.8);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .top-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .top-nav-brand {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+    }
+
+    .nav-link {
+      opacity: 0.7;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary);
+      opacity: 1;
+    }
+
+    .nav-link.active {
+      color: var(--color-primary);
+      opacity: 1;
+      border-bottom: 2px solid var(--color-primary-bright);
+      padding-bottom: 4px;
+    }
+
+    .cta-button {
+      border: 0;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-family: "Manrope", sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transform: scale(0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 28px rgba(115, 92, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: scale(1);
+    }
+
+    main {
+      padding-top: 0;
+    }
+
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 96px 0 128px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: var(--color-secondary-bg);
+      color: var(--color-secondary-text);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      max-width: 920px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(3rem, 7vw, 5.25rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title span {
+      color: var(--color-primary);
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin-top: 32px;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      font-weight: 300;
+    }
+
+    .story-grid,
+    .values-grid,
+    .footer-inner {
+      display: grid;
+      gap: 32px;
+    }
+
+    .story-grid {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .story-media {
+      position: relative;
+    }
+
+    .story-glow {
+      position: absolute;
+      inset: -16px;
+      border-radius: var(--radius-md);
+      background: rgba(212, 175, 55, 0.2);
+      filter: blur(28px);
+    }
+
+    .story-image {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .story-copy h2,
+    .section-title,
+    .trust-card h3 {
+      margin: 0 0 24px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .story-text {
+      display: grid;
+      gap: 24px;
+      color: var(--color-text-muted);
+      font-size: 1.125rem;
+      line-height: 1.8;
+    }
+
+    .story-text p {
+      margin: 0;
+    }
+
+    .story-text .emphasis {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-heading p {
+      margin: 0;
+    }
+
+    .section-divider {
+      width: 96px;
+      height: 6px;
+      margin: 0 auto;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-bright);
+    }
+
+    .values-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .value-card {
+      padding: 40px;
+      background: var(--color-surface);
+      border-left: 4px solid transparent;
+      border-radius: var(--radius-md);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: var(--color-primary-bright);
+    }
+
+    .value-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 24px;
+      border-radius: var(--radius-sm);
+      background: var(--color-secondary-bg);
+      color: var(--color-primary);
+      font-size: 2rem;
+    }
+
+    .value-card h3 {
+      margin: 0 0 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .value-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .section-label {
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .founders {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 96px;
+      flex-wrap: wrap;
+    }
+
+    .founder-card {
+      text-align: center;
+    }
+
+    .founder-avatar-wrap {
+      position: relative;
+      width: 256px;
+      height: 256px;
+      margin: 0 auto 32px;
+    }
+
+    .founder-ring {
+      position: absolute;
+      inset: -8px;
+      border: 2px dashed var(--color-primary-bright);
+      border-radius: 50%;
+      animation: spin 20s linear infinite;
+    }
+
+    .founder-avatar {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: 4px solid var(--color-surface);
+      border-radius: 50%;
+      box-shadow: var(--shadow-strong);
+    }
+
+    .founder-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .founder-card h3 {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .founder-role {
+      margin: 8px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .founder-quote {
+      max-width: 280px;
+      margin: 16px auto 0;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .trust {
+      padding: 80px 0;
+    }
+
+    .trust-card {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px;
+      text-align: center;
+      background: var(--color-surface);
+      border: 1px solid rgba(208, 197, 175, 0.2);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .trust-icon {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--color-primary);
+      font-size: 3rem;
+    }
+
+    .trust-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      margin-top: 32px;
+      opacity: 0.6;
+      filter: grayscale(1);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+      flex-wrap: wrap;
+    }
+
+    .trust-badges:hover {
+      opacity: 1;
+      filter: grayscale(0);
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .site-footer {
+      background: var(--color-surface-low);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      opacity: 0.6;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links a {
+      opacity: 0.6;
+      transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-primary-bright);
+      opacity: 1;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .nav-links {
+        display: none;
+      }
+
+      .story-grid,
+      .values-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image {
+        height: 420px;
+      }
+
+      .founders {
+        gap: 64px;
+      }
+
+      .footer-inner,
+      .footer-links {
+        justify-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, var(--container));
+      }
+
+      .top-nav-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      main {
+        padding-top: 140px;
+      }
+
+      .section,
+      .hero {
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .value-card,
+      .trust-card {
+        padding: 28px;
+      }
+
+      .founder-avatar-wrap {
+        width: 220px;
+        height: 220px;
+      }
+
+      .trust-badges {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <div class="brand">DIGIRICH</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="#">Gold Price</a>
+        <a href="#">Calculator</a>
+        <a class="active" href="about.html">About</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-badge">Established 2024</div>
+      <h1 class="hero-title">Our Mission: <span>Democratizing Wealth</span> through Gold</h1>
+      <p class="hero-copy">
+        Bridging the gap between ancient heritage and digital innovation. We make 24K gold accessible,
+        liquid, and secure for every Indian investor.
+      </p>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container story-grid">
+        <div class="story-media">
+          <div class="story-glow" aria-hidden="true"></div>
+          <img
+            class="story-image"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEHWoitQDhx-5QZLDbXkKIwOUuhM7FQrF4b90q-FOQG28uFCfJUR5ABKNJKzJ2fMXF3J6eovQ6_FkWRawYj3Z4Gg5nnB7iaOacyZTXjVPSU-ovePOqe2JGZ3rQlTBRf9hl1K9w-RX9Qw7hxsnRbLiUlwtm3mfKYMvXLFW_MYTp52qKSq6Ht88JLKkbz5GWo_WkTajbVjEkiQCIhZzVN19Uv79Tl9vVcTTQQKNDMNT00Sw4kcIqWSIQA05Mn6THOeSIIgsKXSRzS48"
+            alt="Pure gold bars stacked neatly in a secure vault."
+          >
+        </div>
+
+        <div class="story-copy">
+          <h2>The Vision of DIGIRICH</h2>
+          <div class="story-text">
+            <p>
+              India's relationship with gold is not just about investment; it is cultural, emotional,
+              and generational. However, the traditional process of buying, storing, and selling
+              physical gold is often fraught with high spreads and security concerns.
+            </p>
+            <p class="emphasis">
+              DIGIRICH was born to modernize this legacy. By leveraging cutting-edge fintech
+              infrastructure, we've built India's next-generation digital gold platform.
+            </p>
+            <p>
+              Our platform allows users to buy gold in fractions, starting with as little as
+              &#8377;1, backed by 100% insured physical reserves in secure vaults. We believe that
+              premium wealth preservation should be a right, not a privilege.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">Our Core Values</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="values-grid">
+          <article class="value-card">
+            <div class="value-icon">
+              <span class="material-symbols-outlined">visibility</span>
+            </div>
+            <h3>Transparency</h3>
+            <p>
+              Real-time market rates and clear pricing with no hidden charges. We believe in total
+              clarity at every step.
+            </p>
+          </article>
+
+          <article class="value-card">
+            <div class="value-icon">
+              <span class="material-symbols-outlined">verified_user</span>
+            </div>
+            <h3>Security</h3>
+            <p>
+              Bank-grade encryption and 100% insured physical vaults. Your digital assets are backed
+              by real-world protection.
+            </p>
+          </article>
+
+          <article class="value-card">
+            <div class="value-icon">
+              <span class="material-symbols-outlined">lightbulb</span>
+            </div>
+            <h3>Innovation</h3>
+            <p>
+              Pioneering tools like SIPs for gold and instant liquidity, redefining how India
+              interacts with its favorite asset.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title">The Minds Behind DIGIRICH</h2>
+          <p class="section-label">Leading with Vision &amp; Integrity</p>
+        </div>
+
+        <div class="founders">
+          <article class="founder-card">
+            <div class="founder-avatar-wrap">
+              <div class="founder-ring" aria-hidden="true"></div>
+              <div class="founder-avatar">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOqe-2J_li0ulpdhSEgFZQbBdLTMUrXQvFLNucDCvY7VRCRSSM94i7UWR5LX8o8ffClBkaloTCp7q3G30ucp3vT3ar1PPYSoI9iZMThGlik2BUUIhPQMjFH4VCmTP2L7beWnqofG3lpbwNnemlPWnq0ddouVtvK62Okayjw85XOWLdGqdJXT_Vq2kGgGWrKZgkZ7d1ZkFaSpU-wlDFyvKjp75oL4PVkNIt3v6CxX2l0yrNk_euKdtGIhjWwN-v-SYJHPFB2cD7PPg"
+                  alt="Arjun Mehta, Co-Founder and CEO"
+                >
+              </div>
+            </div>
+            <h3>Arjun Mehta</h3>
+            <p class="founder-role">Co-Founder &amp; CEO</p>
+            <p class="founder-quote">"Gold should be as easy to spend as cash, yet as stable as history."</p>
+          </article>
+
+          <article class="founder-card">
+            <div class="founder-avatar-wrap">
+              <div class="founder-ring" aria-hidden="true"></div>
+              <div class="founder-avatar">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBtW0Ns179BDOniWkugQLY8Cc_GaBqq91hgeS1p3scA6x5MyT9yVKW7Uhcpg61-CRgTLGNRqO1JD882P5SWJNxzO7PnwMBKB9N1_Mgd1hsG40vYANJMBBZI3WAmRlI_q5jy3VmzT-zchdB2ar3IV7z2ZH6ObQEOiyO2f5ehlnLTjbyFSqRJw3oS1L6Ewzc8J3_2xDTJinayAyKOoYJqgxWIwjHBABcYo3ptXGYFLEgjIOq05Ft3saPt6QDZUkIJah7HU1-C4Ahm0"
+                  alt="Ananya Sharma, Co-Founder and CTO"
+                >
+              </div>
+            </div>
+            <h3>Ananya Sharma</h3>
+            <p class="founder-role">Co-Founder &amp; CTO</p>
+            <p class="founder-quote">"Building a trust-less layer for the world's oldest form of trust."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust container">
+      <div class="trust-card">
+        <span class="material-symbols-outlined trust-icon">security_update_good</span>
+        <h3>Audited. Secure. Trusted.</h3>
+        <p>
+          Our gold reserves are audited every quarter by independent third-party agencies and stored
+          in SEBI-regulated vaults with 100% comprehensive insurance coverage. We prioritize your
+          peace of mind above all else.
+        </p>
+
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <span class="material-symbols-outlined">verified</span>
+            <span>NABL Accredited</span>
+          </div>
+          <div class="trust-badge">
+            <span class="material-symbols-outlined">policy</span>
+            <span>Insured by BRINKS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">DIGIRICH</div>
+        <p class="footer-copy">DIGIRICH - Where Gold Meets Technology &copy; 2024</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Support</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
