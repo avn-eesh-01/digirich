@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precision Gold Calculator | Digirich</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">DIGIRICH</div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav class="nav" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="gold-rates.html">Gold Price</a>
+          <a class="active" href="calculator.html">Calculator</a>
+          <a href="about.html">About</a>
+          <a href="#calculator-faq">FAQ</a>
+        </nav>
+        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </header>
+
+    <main class="calculator-page">
+      <section class="calculator-hero">
+        <div class="container">
+          <div class="calculator-head reveal">
+            <span class="calculator-kicker">Real-Time Market Data</span>
+            <h1>Precision Gold Calculator</h1>
+            <p>
+              Calculate the exact value of your assets with live market rates,
+              premium presentation, and transparent cost breakdowns.
+            </p>
+          </div>
+
+          <div class="calculator-shell reveal">
+            <div class="calculator-orb orb-left" aria-hidden="true"></div>
+            <div class="calculator-orb orb-right" aria-hidden="true"></div>
+
+            <section class="calculator-card">
+              <div class="calculator-tabs" role="tablist" aria-label="Calculator modes">
+                <button class="active" type="button" data-mode="weight" role="tab" aria-selected="true">Convert Weight to Price</button>
+                <button type="button" data-mode="price" role="tab" aria-selected="false">Convert Price to Weight</button>
+              </div>
+
+              <div class="calculator-body">
+                <div class="calculator-grid">
+                  <div class="calculator-form">
+                    <label class="calculator-label" for="calculatorInput">Weight (grams)</label>
+                    <div class="calculator-input-wrap">
+                      <input id="calculatorInput" class="calculator-input" type="number" min="0" step="0.01" value="10" />
+                      <span class="calculator-unit" id="calculatorUnit">g</span>
+                    </div>
+
+                    <div class="calculator-purity-block">
+                      <div class="calculator-label">Select Purity</div>
+                      <div class="calculator-purities" role="radiogroup" aria-label="Gold purity">
+                        <button class="active" type="button" data-purity="24K">24K</button>
+                        <button type="button" data-purity="22K">22K</button>
+                        <button type="button" data-purity="18K">18K</button>
+                        <button type="button" data-purity="14K">14K</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <aside class="calculator-live-tile">
+                    <div class="live-pill">Live Ask Price</div>
+                    <strong id="calcLiveRate">&#8377;7,452.00</strong>
+                    <span id="calcLiveRateMeta">per gram</span>
+                  </aside>
+                </div>
+
+                <div class="calculator-breakdown">
+                  <div class="calculator-row">
+                    <span id="calcBaseLabel">Gold Value (10 g @ 24K)</span>
+                    <strong id="calcBaseValue">&#8377;74,520.00</strong>
+                  </div>
+                  <div class="calculator-row">
+                    <span id="calcMakingLabel">Making Charges 5%</span>
+                    <strong id="calcMakingValue">&#8377;3,726.00</strong>
+                  </div>
+                  <div class="calculator-row">
+                    <span id="calcGstLabel">GST 3%</span>
+                    <strong id="calcGstValue">&#8377;2,347.38</strong>
+                  </div>
+                  <div class="calculator-total">
+                    <div>
+                      <span>Total Approx. Price</span>
+                      <small id="calcTotalMeta">inclusive of charges</small>
+                    </div>
+                    <strong id="calcTotalValue">&#8377;80,593.38</strong>
+                  </div>
+                </div>
+
+                <div class="calculator-actions">
+                  <a href="gold-rates.html" class="btn btn-primary calculator-btn">View Live Gold Price</a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="calculator-metrics reveal">
+            <article class="calculator-metric-card">
+              <span>Per Gram</span>
+              <strong id="metricGram">&#8377;7,452</strong>
+              <p>Current valuation for 1g of 24K pure gold.</p>
+            </article>
+            <article class="calculator-metric-card">
+              <span>Per Tola (11.66g)</span>
+              <strong id="metricTola">&#8377;86,890</strong>
+              <p>Traditional unit valuation for investment pieces.</p>
+            </article>
+            <article class="calculator-metric-card">
+              <span>Per Kilogram</span>
+              <strong id="metricKg">&#8377;74.52L</strong>
+              <p>Institutional and bulk trading market valuation.</p>
+            </article>
+          </section>
+
+          <section class="calculator-banner reveal" id="calculator-faq">
+            <div class="calculator-banner-copy">
+              <h2>Digital Clarity, Physical Security</h2>
+              <p>
+                Our rates are synced with live benchmarks so you get a clean,
+                trustworthy estimate before you buy, sell, or compare holdings.
+              </p>
+              <div class="hero-actions">
+                <a href="gold-rates.html" class="btn btn-outline">View Price History</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="brand">DIGIRICH</div>
+          <p>DIGIRICH - Where Gold Meets Technology</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <a href="gold-rates.html">Market</a>
+          <a href="calculator.html">Calculator</a>
+          <a href="#">Delivery</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Reports</a>
+          <a href="#">Security</a>
+          <a href="#">Support</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>&copy; 2026 DIGIRICH. Securely Minted.</span>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/calculator.js"></script>
+  </body>
+</html>

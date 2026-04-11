@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gold gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7d27a"/>
+      <stop offset="50%" stop-color="#e0a84f"/>
+      <stop offset="100%" stop-color="#c57c22"/>
+    </linearGradient>
+
+    <!-- Dark engraving gradient -->
+    <linearGradient id="engraveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#6b4a1e"/>
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="4" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Side thickness -->
+  <ellipse cx="270" cy="270" rx="180" ry="190" fill="#b8731f" />
+
+  <!-- Main coin tilted -->
+  <g transform="rotate(-20 256 256)" filter="url(#shadow)">
+    <ellipse cx="256" cy="256" rx="180" ry="180" fill="url(#goldGrad)"/>
+
+    <!-- Inner engraved circle -->
+    <ellipse cx="256" cy="256" rx="140" ry="140" fill="#d89c3f" opacity="0.6"/>
+
+    <!-- Engraved ₹ symbol -->
+    <text x="256" y="290" text-anchor="middle" font-size="150" font-family="Segoe UI, Arial" font-weight="bold" fill="url(#engraveGrad)">
+      ₹
+    </text>
+  </g>
+</svg>
