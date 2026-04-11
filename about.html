@@ -160,11 +160,21 @@
     }
 
     .hero {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
       align-items: center;
-      padding: 96px 0 128px;
+      gap: 56px;
+      min-height: calc(100vh - 88px);
+      padding: 72px 0 88px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
     }
 
     .hero-badge {
@@ -181,13 +191,13 @@
     }
 
     .hero-title {
-      max-width: 920px;
       margin: 0;
       font-family: "Manrope", sans-serif;
-      font-size: clamp(3rem, 7vw, 5.25rem);
-      line-height: 1.08;
+      font-size: clamp(3.2rem, 6vw, 5.35rem);
+      line-height: 1.02;
       font-weight: 800;
       letter-spacing: -0.04em;
+      text-wrap: balance;
     }
 
     .hero-title span {
@@ -195,12 +205,179 @@
     }
 
     .hero-copy {
-      max-width: 720px;
       margin-top: 32px;
-      font-size: 1.25rem;
-      line-height: 1.7;
+      max-width: 620px;
+      font-size: 1.22rem;
+      line-height: 1.75;
       color: var(--color-text-muted);
       font-weight: 300;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 460px;
+      perspective: 1400px;
+      perspective-origin: 50% 30%;
+    }
+
+    .hero-orbit,
+    .hero-orbit::before,
+    .hero-orbit::after {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+
+    .hero-orbit {
+      width: 320px;
+      height: 320px;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%) rotateX(73deg);
+      border: 1px solid rgba(255, 169, 90, 0.18);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24) inset;
+      animation: orbitSpin 18s linear infinite;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      border: 1px solid rgba(255, 169, 90, 0.1);
+    }
+
+    .hero-orbit::before {
+      transform: scale(1.14);
+    }
+
+    .hero-orbit::after {
+      display: none;
+    }
+
+    .hero-core,
+    .hero-coin-stack,
+    .hero-spark {
+      display: none;
+    }
+
+    .hero-about-stack {
+      position: absolute;
+      left: 50%;
+      bottom: 42px;
+      width: 310px;
+      height: 285px;
+      transform-style: preserve-3d;
+      transform: translateX(-50%) rotateX(10deg) rotateY(-12deg);
+      animation: heroFloat 6.5s ease-in-out infinite;
+    }
+
+    .hero-panel {
+      position: absolute;
+      inset: auto 0 0;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 244, 232, 0.96) 100%);
+      border: 1px solid rgba(208, 197, 175, 0.45);
+      box-shadow:
+        0 22px 44px rgba(24, 27, 32, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .hero-panel-back {
+      right: 8px;
+      bottom: 8px;
+      width: 100%;
+      height: 196px;
+      opacity: 0.72;
+      transform: translateZ(-20px);
+    }
+
+    .hero-panel-front {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 212px;
+      padding: 92px 28px 26px;
+      overflow: hidden;
+    }
+
+    .hero-panel-front::before {
+      content: "";
+      position: absolute;
+      inset: 22px 22px auto;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 169, 90, 0), rgba(255, 169, 90, 0.5), rgba(255, 169, 90, 0));
+    }
+
+    .hero-shield {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 132px;
+      height: 148px;
+      transform: translateX(-50%);
+      border-radius: 36px 36px 48px 48px;
+      background: linear-gradient(180deg, #fff7df 0%, #ffc36f 45%, #e09224 100%);
+      clip-path: polygon(50% 0%, 88% 16%, 88% 58%, 50% 100%, 12% 58%, 12% 16%);
+      box-shadow:
+        0 20px 36px rgba(196, 127, 27, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        inset 0 -18px 22px rgba(138, 82, 7, 0.18);
+      animation: heroPulse 5.5s ease-in-out infinite;
+    }
+
+    .hero-shield::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      clip-path: polygon(50% 0%, 88% 16%, 88% 58%, 50% 100%, 12% 58%, 12% 16%);
+      border: 1px solid rgba(255, 249, 231, 0.76);
+      border-radius: 28px 28px 36px 36px;
+    }
+
+    .hero-shield::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 36px;
+      height: 20px;
+      border-left: 5px solid rgba(108, 70, 5, 0.78);
+      border-bottom: 5px solid rgba(108, 70, 5, 0.78);
+      transform: translate(-46%, -42%) rotate(-45deg);
+    }
+
+    .hero-panel-lines {
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-panel-line,
+    .hero-panel-line-short {
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 169, 90, 0.34), rgba(115, 92, 0, 0.08));
+    }
+
+    .hero-panel-line-short {
+      width: 58%;
+    }
+
+    .hero-panel-badges {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-panel-badge {
+      flex: 1;
+      height: 44px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 247, 230, 0.92), rgba(247, 236, 212, 0.86));
+      border: 1px solid rgba(208, 197, 175, 0.42);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    }
+
+    .hero-panel-badge:nth-child(2) {
+      transform: translateY(6px);
     }
 
     .story-grid,
@@ -401,31 +578,118 @@
     }
 
     .trust {
+      position: relative;
       padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .trust::before,
+    .trust::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .trust::before {
+      top: -120px;
+      left: 6%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(255, 169, 90, 0.28) 0%, rgba(255, 169, 90, 0) 72%);
+      animation: trustGlow 8s ease-in-out infinite;
+    }
+
+    .trust::after {
+      right: 4%;
+      bottom: -140px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(214, 111, 18, 0.22) 0%, rgba(214, 111, 18, 0) 74%);
+      animation: trustGlow 10s ease-in-out infinite reverse;
     }
 
     .trust-card {
+      position: relative;
+      z-index: 1;
       max-width: 900px;
       margin: 0 auto;
-      padding: 48px;
+      padding: 56px 48px;
       text-align: center;
-      background: var(--color-surface);
-      border: 1px solid rgba(208, 197, 175, 0.2);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 34%),
+        linear-gradient(135deg, #fff2e3 0%, #ffa95a 34%, #eb7f2e 100%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: var(--radius-lg);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+      box-shadow:
+        0 28px 60px rgba(184, 91, 18, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      overflow: hidden;
+      isolation: isolate;
+      animation: trustCardReveal 1s ease-out both;
+      transition: transform 0.45s ease, box-shadow 0.45s ease;
+    }
+
+    .trust-card::before,
+    .trust-card::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .trust-card::before {
+      top: -90px;
+      right: -70px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 72%);
+      z-index: -1;
+    }
+
+    .trust-card::after {
+      top: 18px;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    }
+
+    .trust-card:hover {
+      transform: translateY(-8px);
+      box-shadow:
+        0 36px 72px rgba(184, 91, 18, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
     }
 
     .trust-icon {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: var(--color-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 84px;
+      height: 84px;
+      margin-bottom: 28px;
+      border-radius: 24px;
+      color: #964f05;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 196, 138, 0.7));
+      box-shadow:
+        0 16px 26px rgba(184, 91, 18, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
       font-size: 3rem;
+      animation: trustIconFloat 4.2s ease-in-out infinite;
+    }
+
+    .trust-card h3 {
+      color: #241900;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
     .trust-card p {
       margin: 0;
-      color: var(--color-text-muted);
+      color: rgba(64, 41, 0, 0.84);
       line-height: 1.8;
+      font-size: 1.08rem;
     }
 
     .trust-badges {
@@ -433,26 +697,70 @@
       justify-content: center;
       align-items: center;
       gap: 48px;
-      margin-top: 32px;
-      opacity: 0.6;
-      filter: grayscale(1);
-      transition: filter 0.3s ease, opacity 0.3s ease;
+      margin-top: 36px;
       flex-wrap: wrap;
-    }
-
-    .trust-badges:hover {
-      opacity: 1;
-      filter: grayscale(0);
     }
 
     .trust-badge {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      padding: 14px 20px;
+      border: 1px solid rgba(124, 91, 0, 0.12);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.34);
+      backdrop-filter: blur(10px);
+      color: rgba(58, 41, 0, 0.78);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+
+    .trust-badge:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.5);
+      color: rgba(40, 28, 0, 0.95);
+    }
+
+    .trust-badge .material-symbols-outlined {
+      font-size: 1.1rem;
+    }
+
+    @keyframes trustCardReveal {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes trustIconFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes trustGlow {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate3d(0, 18px, 0) scale(1.08);
+      }
     }
 
     .site-footer {
@@ -509,9 +817,76 @@
       }
     }
 
+    @keyframes orbitSpin {
+      from {
+        transform: translateX(-50%) rotateX(73deg) rotateZ(0deg);
+      }
+
+      to {
+        transform: translateX(-50%) rotateX(73deg) rotateZ(360deg);
+      }
+    }
+
+    @keyframes heroFloat {
+      0%,
+      100% {
+        transform: translateX(-50%) rotateX(18deg) rotateY(-20deg) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) rotateX(18deg) rotateY(-14deg) translateY(-14px);
+      }
+    }
+
+    @keyframes heroPulse {
+      0%,
+      100% {
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+
+    @keyframes sparkDrift {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(0.9);
+        opacity: 0.45;
+      }
+
+      50% {
+        transform: translate3d(0, -18px, 0) scale(1.15);
+        opacity: 1;
+      }
+    }
+
     @media (max-width: 960px) {
       .nav-links {
         display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        min-height: auto;
+        padding-top: 56px;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: none;
+      }
+
+      .hero-copy {
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-visual {
+        min-height: 380px;
       }
 
       .story-grid,
@@ -555,6 +930,52 @@
         padding-bottom: 72px;
       }
 
+      .hero {
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.6rem, 12vw, 4rem);
+      }
+
+      .hero-copy {
+        font-size: 1.05rem;
+      }
+
+      .hero-visual {
+        min-height: 320px;
+      }
+
+      .hero-orbit {
+        width: 230px;
+        height: 230px;
+        top: 38px;
+      }
+
+      .hero-about-stack {
+        bottom: 20px;
+        width: 232px;
+        height: 220px;
+      }
+
+      .hero-panel-back {
+        height: 150px;
+      }
+
+      .hero-panel-front {
+        height: 164px;
+        padding: 72px 18px 18px;
+      }
+
+      .hero-shield {
+        width: 104px;
+        height: 118px;
+      }
+
+      .hero-panel-badges {
+        gap: 8px;
+      }
+
       .value-card,
       .trust-card {
         padding: 28px;
@@ -568,6 +989,11 @@
       .trust-badges {
         gap: 20px;
       }
+
+      .trust-badge {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -579,7 +1005,11 @@
       <nav class="nav" id="navMenu">
         <a href="index.html">Home</a>
         <a href="gold-rates.html">Gold Price</a>
+<<<<<<< HEAD
         <a href="#">Calculator</a>
+=======
+        <a href="calculator.html">Calculator</a>
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
         <a class="active" href="about.html">About</a>
         <a href="#">FAQ</a>
       </nav>
@@ -589,12 +1019,42 @@
 
   <main>
     <section class="hero container">
-      <div class="hero-badge">Established 2024</div>
-      <h1 class="hero-title">Our Mission: <span>Democratizing Wealth</span> through Gold</h1>
-      <p class="hero-copy">
-        Bridging the gap between ancient heritage and digital innovation. We make 24K gold accessible,
-        liquid, and secure for every Indian investor.
-      </p>
+      <div class="hero-content">
+        <div class="hero-badge">Established 2024</div>
+        <h1 class="hero-title">Our Mission: <span>Democratizing Wealth</span> through Gold</h1>
+        <p class="hero-copy">
+          Bridging the gap between ancient heritage and digital innovation. We make 24K gold accessible,
+          liquid, and secure for every Indian investor.
+        </p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-orbit"></div>
+        <div class="hero-about-stack">
+          <div class="hero-panel hero-panel-back"></div>
+          <div class="hero-panel hero-panel-front">
+            <div class="hero-shield"></div>
+            <div class="hero-panel-lines">
+              <div class="hero-panel-line"></div>
+              <div class="hero-panel-line"></div>
+              <div class="hero-panel-line-short"></div>
+            </div>
+            <div class="hero-panel-badges">
+              <div class="hero-panel-badge"></div>
+              <div class="hero-panel-badge"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-core"></div>
+        <div class="hero-coin-stack">
+          <div class="hero-coin hero-coin-1"><span class="hero-coin-symbol">₹</span></div>
+          <div class="hero-coin hero-coin-2"><span class="hero-coin-symbol">₹</span></div>
+          <div class="hero-coin hero-coin-3"><span class="hero-coin-symbol">₹</span></div>
+        </div>
+        <div class="hero-spark hero-spark-1"></div>
+        <div class="hero-spark hero-spark-2"></div>
+        <div class="hero-spark hero-spark-3"></div>
+      </div>
     </section>
 
     <section class="section section-muted">
@@ -687,14 +1147,14 @@
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOqe-2J_li0ulpdhSEgFZQbBdLTMUrXQvFLNucDCvY7VRCRSSM94i7UWR5LX8o8ffClBkaloTCp7q3G30ucp3vT3ar1PPYSoI9iZMThGlik2BUUIhPQMjFH4VCmTP2L7beWnqofG3lpbwNnemlPWnq0ddouVtvK62Okayjw85XOWLdGqdJXT_Vq2kGgGWrKZgkZ7d1ZkFaSpU-wlDFyvKjp75oL4PVkNIt3v6CxX2l0yrNk_euKdtGIhjWwN-v-SYJHPFB2cD7PPg"
+                  src="assets/images/narayan-karn.jpeg"
                   alt="Arjun Mehta, Co-Founder and CEO"
                 >
               </div>
             </div>
-            <h3>Arjun Mehta</h3>
-            <p class="founder-role">Co-Founder &amp; CEO</p>
-            <p class="founder-quote">"Gold should be as easy to spend as cash, yet as stable as history."</p>
+            <h3>Narayan Karn</h3>
+            <p class="founder-role">Director &amp; CEO</p>
+            <p class="founder-quote">"Visionary leader driving financial innovation and digital asset transformation."</p>
           </article>
 
           <article class="founder-card">
@@ -702,14 +1162,14 @@
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBtW0Ns179BDOniWkugQLY8Cc_GaBqq91hgeS1p3scA6x5MyT9yVKW7Uhcpg61-CRgTLGNRqO1JD882P5SWJNxzO7PnwMBKB9N1_Mgd1hsG40vYANJMBBZI3WAmRlI_q5jy3VmzT-zchdB2ar3IV7z2ZH6ObQEOiyO2f5ehlnLTjbyFSqRJw3oS1L6Ewzc8J3_2xDTJinayAyKOoYJqgxWIwjHBABcYo3ptXGYFLEgjIOq05Ft3saPt6QDZUkIJah7HU1-C4Ahm0"
+                  src="assets/images/kalpana-karn.jpeg"
                   alt="Ananya Sharma, Co-Founder and CTO"
                 >
               </div>
             </div>
-            <h3>Ananya Sharma</h3>
-            <p class="founder-role">Co-Founder &amp; CTO</p>
-            <p class="founder-quote">"Building a trust-less layer for the world's oldest form of trust."</p>
+            <h3>Kalpana Kumari</h3>
+            <p class="founder-role">Co-Founder &amp; Strategic Director</p>
+            <p class="founder-quote">"Strategic director ensuring operational excellence and customer trust."</p>
           </article>
         </div>
       </div>
