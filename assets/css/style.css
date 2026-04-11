@@ -980,6 +980,466 @@ h2 span {
   justify-content: center;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gold-page {
+  background:
+    radial-gradient(circle at top left, rgba(244, 228, 181, 0.6), rgba(244, 228, 181, 0) 28%),
+    linear-gradient(180deg, #fffaf0 0%, #f5f2ea 36%, #f4f4f4 100%);
+}
+
+.gold-hero {
+  padding: 68px 0 40px;
+}
+
+.gold-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  gap: 28px;
+  align-items: end;
+}
+
+.gold-hero-copy h1 {
+  margin: 16px 0 14px;
+  font-size: clamp(42px, 5.5vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.gold-kicker,
+.gold-label,
+.gold-insight-tag,
+.gold-side-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gold-kicker {
+  color: #8f6d00;
+}
+
+.gold-kicker::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4af37;
+  box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.14);
+}
+
+.gold-hero-copy p {
+  max-width: 640px;
+  margin: 0;
+  color: #645d4b;
+  font-size: 21px;
+  line-height: 1.55;
+}
+
+.gold-stamp {
+  margin-top: 22px;
+  color: #716955;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.gold-hero-panel,
+.gold-chart-card,
+.gold-insight-card,
+.gold-side-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(210, 196, 164, 0.5);
+  box-shadow: 0 18px 36px rgba(70, 53, 11, 0.08);
+}
+
+.gold-hero-panel {
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.gold-panel-heading {
+  padding: 28px 30px;
+  font-size: 24px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.gold-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 28px 30px 30px;
+  background: linear-gradient(180deg, #fff8df 0%, #fff4ce 100%);
+}
+
+.gold-tier-card {
+  border-radius: 22px;
+  padding: 22px 16px 18px;
+  background: linear-gradient(180deg, rgba(255, 252, 238, 0.96), rgba(255, 243, 200, 0.95));
+  text-align: center;
+  border: 1px solid rgba(232, 204, 120, 0.45);
+}
+
+.gold-tier-active {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(201, 158, 38, 0.18);
+}
+
+.gold-tier-icon {
+  width: 82px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #8f6d00;
+  background: linear-gradient(135deg, #ffe082 0%, #f1c33f 54%, #d2a323 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.gold-tier-card p {
+  margin: 0;
+  color: #855c13;
+  font-size: 16px;
+}
+
+.gold-tier-card strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 19px;
+}
+
+.gold-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 324px;
+  gap: 28px;
+  align-items: start;
+}
+
+.gold-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.gold-label {
+  color: #8f6d00;
+  margin-bottom: 10px;
+}
+
+.gold-section-head h2 {
+  text-align: left;
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.gold-select-wrap {
+  flex: 0 0 auto;
+}
+
+.gold-select {
+  min-width: 168px;
+  border: 1px solid #d7ccb0;
+  border-radius: 14px;
+  background: #fff;
+  color: #2a2417;
+  font: inherit;
+  font-weight: 500;
+  padding: 14px 42px 14px 16px;
+}
+
+.gold-chart-card {
+  border-radius: 30px;
+  padding: 22px;
+}
+
+.gold-chart-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.gold-meta-label,
+.gold-change span {
+  color: #8f8a7b;
+  font-size: 14px;
+}
+
+.gold-price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.gold-price-line strong {
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1;
+}
+
+.gold-price-line span {
+  color: #4e4638;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.gold-change {
+  text-align: right;
+}
+
+.gold-change strong {
+  display: block;
+  margin-top: 6px;
+  color: #1fa95a;
+  font-size: 28px;
+}
+
+.gold-chart-area {
+  position: relative;
+  border-radius: 26px;
+  padding: 18px 18px 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 248, 221, 0.95));
+  border: 1px solid rgba(228, 217, 184, 0.8);
+  overflow: hidden;
+}
+
+.gold-chart-grid {
+  position: absolute;
+  inset: 18px 18px 44px;
+  display: grid;
+  align-content: space-between;
+}
+
+.gold-chart-grid span {
+  display: block;
+  height: 1px;
+  background: rgba(146, 130, 91, 0.12);
+}
+
+.gold-chart-svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#goldFocusLine {
+  stroke: rgba(168, 117, 0, 0.34);
+  stroke-width: 2;
+  stroke-dasharray: 8 8;
+}
+
+#goldFocusDot {
+  fill: #fff;
+  stroke: #b98308;
+  stroke-width: 4;
+}
+
+.gold-chart-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: -4px;
+  color: #9d9279;
+  font-size: 14px;
+}
+
+.gold-periods {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px;
+  border-radius: 18px;
+  background: #f6eed8;
+}
+
+.gold-periods button {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #77684a;
+  font: inherit;
+  font-weight: 700;
+  padding: 14px 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.gold-periods button.active {
+  background: #fff;
+  color: #4d3500;
+  box-shadow: 0 10px 20px rgba(82, 58, 6, 0.1);
+}
+
+.gold-insights {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.gold-insight-card,
+.gold-side-card {
+  border-radius: 26px;
+  padding: 26px;
+}
+
+.gold-insight-card h3,
+.gold-side-card h3 {
+  margin: 12px 0 10px;
+  font-size: 28px;
+  line-height: 1.14;
+}
+
+.gold-insight-card p,
+.gold-side-card p {
+  margin: 0;
+  color: #695f4c;
+  line-height: 1.65;
+}
+
+.gold-spread-list,
+.gold-option-list,
+.gold-faq-list {
+  margin: 0;
+}
+
+.gold-spread-list {
+  list-style: none;
+  padding: 6px 0 0;
+}
+
+.gold-spread-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(214, 205, 177, 0.7);
+}
+
+.gold-spread-list li:first-child {
+  border-top: 0;
+}
+
+.gold-spread-list span {
+  color: #6b6049;
+}
+
+.gold-spread-list strong {
+  font-size: 20px;
+}
+
+.gold-sidebar {
+  display: grid;
+  gap: 20px;
+}
+
+.gold-side-cta {
+  color: #fff;
+  background:
+    radial-gradient(circle at top, rgba(255, 226, 122, 0.35), rgba(255, 226, 122, 0) 32%),
+    linear-gradient(160deg, #4f3800 0%, #8f6d00 100%);
+  border-color: rgba(255, 224, 153, 0.18);
+}
+
+.gold-side-cta .gold-side-badge {
+  color: #ffe397;
+}
+
+.gold-side-cta p {
+  color: rgba(255, 247, 221, 0.82);
+}
+
+.gold-side-cta .btn-outline {
+  margin-top: 18px;
+  background: #fff7df;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.gold-option-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.gold-option-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(214, 205, 177, 0.7);
+  text-decoration: none;
+}
+
+.gold-option-list a:first-child {
+  border-top: 0;
+  padding-top: 4px;
+}
+
+.gold-option-list span {
+  font-weight: 600;
+}
+
+.gold-option-list strong {
+  color: #8f6d00;
+  font-size: 15px;
+}
+
+.gold-faq-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.gold-faq-list details {
+  border-top: 1px solid rgba(214, 205, 177, 0.7);
+  padding-top: 14px;
+}
+
+.gold-faq-list details:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.gold-faq-list summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.gold-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.gold-faq-list p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
 .site-footer {
   margin-top: 60px;
   border-top: 1px solid var(--line);
@@ -1090,6 +1550,16 @@ h2 span {
 
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gold-hero-inner,
+  .gold-layout,
+  .gold-insights {
+    grid-template-columns: 1fr;
+  }
+
+  .gold-sidebar {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1215,6 +1685,45 @@ h2 span {
 
   .section-pad {
     padding: 60px 0;
+  }
+
+  .gold-hero {
+    padding: 42px 0 24px;
+  }
+
+  .gold-hero-copy p {
+    font-size: 18px;
+  }
+
+  .gold-panel-heading,
+  .gold-chart-card,
+  .gold-insight-card,
+  .gold-side-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .gold-tier-grid,
+  .gold-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .gold-section-head,
+  .gold-chart-meta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gold-select {
+    width: 100%;
+  }
+
+  .gold-change {
+    text-align: left;
+  }
+
+  .gold-periods {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

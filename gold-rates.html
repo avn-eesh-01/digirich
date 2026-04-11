@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gold Rates | Digirich</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">DIGIRICH</div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav class="nav" id="navMenu">
+          <a href="index.html">Home</a>
+          <a class="active" href="gold-rates.html">Gold Price</a>
+          <a href="#">Calculator</a>
+          <a href="about.html">About</a>
+          <a href="#gold-faq">FAQ</a>
+        </nav>
+        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </header>
+
+    <main class="gold-page">
+      <section class="gold-hero">
+        <div class="container gold-hero-inner">
+          <div class="gold-hero-copy">
+            <span class="gold-kicker">Live Digital Gold Prices</span>
+            <h1>Today&apos;s Gold Price</h1>
+            <p>
+              Track live 24K, 22K, and 18K rates, compare purity bands, and
+              understand short-term movement before you buy or accumulate.
+            </p>
+            <div class="gold-stamp">
+              Updated <span id="goldDateStamp">10 Apr 26, 01:03 am</span>
+            </div>
+          </div>
+
+          <aside class="gold-hero-panel">
+            <div class="gold-panel-heading">Showing Gold Prices For India</div>
+            <div class="gold-tier-grid">
+              <article class="gold-tier-card gold-tier-active">
+                <div class="gold-tier-icon">24K</div>
+                <p>24K Gold / 10gm</p>
+                <strong id="hero24k">&#8377;147,220.40</strong>
+              </article>
+              <article class="gold-tier-card">
+                <div class="gold-tier-icon">22K</div>
+                <p>22K Gold / 10gm</p>
+                <strong id="hero22k">&#8377;134,956.90</strong>
+              </article>
+              <article class="gold-tier-card">
+                <div class="gold-tier-icon">18K</div>
+                <p>18K Gold / 10gm</p>
+                <strong id="hero18k">&#8377;110,415.30</strong>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="gold-content section-pad">
+        <div class="container gold-layout">
+          <section class="gold-main">
+            <div class="gold-section-head">
+              <div>
+                <span class="gold-label">Gold Price Performance</span>
+                <h2>Live gold trend analysis</h2>
+              </div>
+              <label class="gold-select-wrap">
+                <span class="sr-only">Select purity</span>
+                <select id="goldPuritySelect" class="gold-select">
+                  <option value="24K">24K Gold</option>
+                  <option value="22K">22K Gold</option>
+                  <option value="18K">18K Gold</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="gold-chart-card">
+              <div class="gold-chart-meta">
+                <div>
+                  <div class="gold-meta-label">Live Gold Buy Price</div>
+                  <div class="gold-price-line">
+                    <strong id="goldPricePerGram">15,753.50</strong><span>/gm</span>
+                  </div>
+                </div>
+                <div class="gold-change">
+                  <span id="goldChangeLabel">1 Week Change</span>
+                  <strong id="goldChangeValue">+ 1.75%</strong>
+                </div>
+              </div>
+
+              <div class="gold-chart-area">
+                <div class="gold-chart-grid" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <svg class="gold-chart-svg" viewBox="0 0 760 330" role="img" aria-label="Gold price trend chart">
+                  <defs>
+                    <linearGradient id="goldAreaFill" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#f0c64c" stop-opacity="0.55"></stop>
+                      <stop offset="100%" stop-color="#f0c64c" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path id="goldAreaPath" fill="url(#goldAreaFill)" stroke="none"></path>
+                  <path id="goldLinePath" fill="none" stroke="#e0af23" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <line id="goldFocusLine" x1="690" y1="24" x2="690" y2="290"></line>
+                  <circle id="goldFocusDot" cx="690" cy="74" r="6"></circle>
+                </svg>
+                <div class="gold-chart-footer">
+                  <span id="goldAxisStart">4 Apr 26</span>
+                  <span id="goldAxisEnd">10 Apr 26</span>
+                </div>
+              </div>
+
+              <div class="gold-periods" id="goldPeriodButtons">
+                <button type="button" class="active" data-period="1W">1 Week</button>
+                <button type="button" data-period="1M">1 M</button>
+                <button type="button" data-period="6M">6 M</button>
+                <button type="button" data-period="1Y">1 Y</button>
+                <button type="button" data-period="3Y">3 Y</button>
+                <button type="button" data-period="5Y">5 Y</button>
+              </div>
+            </div>
+
+            <section class="gold-insights">
+              <article class="gold-insight-card">
+                <span class="gold-insight-tag">Market Snapshot</span>
+                <h3>Designed like a pricing dashboard, built for quick decisions.</h3>
+                <p>
+                  Digirich surfaces purity-wise rates, short-range movement, and
+                  long-horizon performance in one place so the page feels useful,
+                  not ornamental.
+                </p>
+              </article>
+              <article class="gold-insight-card">
+                <span class="gold-insight-tag">Purity Spread</span>
+                <ul class="gold-spread-list">
+                  <li><span>24K / gm</span><strong id="spread24k">&#8377;15,753.50</strong></li>
+                  <li><span>22K / gm</span><strong id="spread22k">&#8377;14,428.70</strong></li>
+                  <li><span>18K / gm</span><strong id="spread18k">&#8377;11,041.53</strong></li>
+                </ul>
+              </article>
+            </section>
+          </section>
+
+          <aside class="gold-sidebar">
+            <article class="gold-side-card gold-side-cta">
+              <div class="gold-side-badge">Price Alerts</div>
+              <h3>Get alerts when gold prices move</h3>
+              <p>Stay close to the market and act at the rate you want.</p>
+              <a href="#" class="btn btn-outline">Notify Me</a>
+            </article>
+
+            <article class="gold-side-card">
+              <h3>Savings Options For You</h3>
+              <div class="gold-option-list">
+                <a href="#"><span>Save Daily</span><strong>&#8377;10 onwards</strong></a>
+                <a href="#"><span>Save Weekly</span><strong>Auto-buy plan</strong></a>
+                <a href="#"><span>Save Monthly</span><strong>Long-term stack</strong></a>
+              </div>
+            </article>
+
+            <article class="gold-side-card" id="gold-faq">
+              <h3>Quick FAQ</h3>
+              <div class="gold-faq-list">
+                <details open>
+                  <summary>How often do rates refresh?</summary>
+                  <p>Rates can be refreshed from the configured backend price source when the proxy is enabled.</p>
+                </details>
+                <details>
+                  <summary>Why do purity prices differ?</summary>
+                  <p>24K reflects near-pure gold, while 22K and 18K include alloy composition and trade at lower per-gram values.</p>
+                </details>
+                <details>
+                  <summary>Can this connect to live API data?</summary>
+                  <p>Yes. The page is already wired to the existing `api/gold-price.php` endpoint and falls back to local demo values when unavailable.</p>
+                </details>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="brand">DIGIRICH</div>
+          <p>DIGIRICH - Where Gold Meets Technology</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <a href="gold-rates.html">Market</a>
+          <a href="#">Vault Storage</a>
+          <a href="#">Delivery</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Reports</a>
+          <a href="#">Security</a>
+          <a href="#">Support</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>&copy; 2026 DIGIRICH. Securely Minted.</span>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/gold-price.js"></script>
+  </body>
+</html>
