@@ -9,13 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
     :root {
-      --color-background: #f9f9f9;
+      --color-background: #ffffff;
       --color-surface: #ffffff;
-      --color-surface-low: #f3f3f3;
-      --color-surface-mid: #eeeeee;
+      --color-surface-low: #ffffff;
+      --color-surface-mid: #ffffff;
       --color-text: #1a1c1c;
       --color-text-muted: #4d4635;
       --color-primary: #735c00;
@@ -92,7 +92,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(249, 249, 249, 0.8);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(18px);
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
     }
@@ -215,9 +215,10 @@
 
     .hero-visual {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-height: 460px;
-      perspective: 1400px;
-      perspective-origin: 50% 30%;
     }
 
     .hero-orbit,
@@ -236,7 +237,7 @@
       transform: translateX(-50%) rotateX(73deg);
       border: 1px solid rgba(255, 169, 90, 0.18);
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24) inset;
-      animation: orbitSpin 18s linear infinite;
+      animation: heroOrbitSpin 18s linear infinite;
     }
 
     .hero-orbit::before,
@@ -257,6 +258,20 @@
     .hero-coin-stack,
     .hero-spark {
       display: none;
+    }
+
+    .hero-about-stack {
+      display: none;
+    }
+
+    .hero-wallet {
+      position: relative;
+      z-index: 1;
+      width: min(430px, 86%);
+      height: auto;
+      filter: drop-shadow(0 28px 48px rgba(220, 184, 120, 0.28));
+      transform-origin: center;
+      animation: heroWalletFloat 6s ease-in-out infinite;
     }
 
     .hero-about-stack {
@@ -764,47 +779,194 @@
     }
 
     .site-footer {
-      background: var(--color-surface-low);
-      padding: 48px 0;
+      position: relative;
+      padding: 40px 0 56px;
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(247, 225, 166, 0.12), transparent 26%),
+        linear-gradient(180deg, #1b1710 0%, #110f0b 100%);
+      overflow: hidden;
     }
 
-    .footer-inner {
-      grid-template-columns: 1fr auto;
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 160px 160px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .footer-shell {
+      position: relative;
+      z-index: 1;
+      padding: 36px;
+      border: 1px solid rgba(247, 225, 166, 0.12);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(14px);
+    }
+
+    .footer-top,
+    .footer-bottom {
+      display: flex;
       align-items: center;
-      gap: 32px;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-identity {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-logo-badge {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f7e1a6 0%, #d4af37 48%, #8b6a04 100%);
+      color: #16120b;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 16px 36px rgba(212, 175, 55, 0.22);
     }
 
     .footer-brand {
+      margin: 0;
       font-family: "Manrope", sans-serif;
-      font-size: 1.125rem;
+      font-size: clamp(1.35rem, 2vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff7de;
+    }
+
+    .footer-tagline {
+      margin: 6px 0 0;
+      max-width: 440px;
+      color: rgba(255, 247, 222, 0.7);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .footer-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      color: #1b160d;
+      background: white;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    .footer-social:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #fff8e6 0%, #f7e1a6 100%);
+      box-shadow: 0 14px 28px rgba(212, 175, 55, 0.18);
+    }
+
+    .footer-social svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .footer-divider {
+      height: 1px;
+      margin: 28px 0 34px;
+      background: linear-gradient(90deg, rgba(247, 225, 166, 0), rgba(247, 225, 166, 0.28), rgba(247, 225, 166, 0));
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .footer-column-title {
+      margin: 0 0 16px;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.12rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      color: #fff7de;
+    }
+
+    .footer-column-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .footer-column-links a,
+    .footer-contact-line {
+      color: rgba(255, 247, 222, 0.72);
+      font-size: 1rem;
+      line-height: 1.65;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .footer-column-links a:hover,
+    .footer-legal a:hover,
+    .footer-contact-line:hover {
+      color: #f7e1a6;
+      transform: translateX(2px);
+    }
+
+    .footer-chip {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(247, 225, 166, 0.14);
+      border: 1px solid rgba(247, 225, 166, 0.18);
+      color: #f7e1a6;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .footer-bottom {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(247, 225, 166, 0.12);
     }
 
     .footer-copy {
       margin: 0;
-      font-size: 0.875rem;
-      letter-spacing: 0.04em;
-      opacity: 0.6;
+      color: rgba(255, 247, 222, 0.6);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
     }
 
-    .footer-links {
+    .footer-legal {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 32px;
-      font-size: 0.875rem;
-      letter-spacing: 0.04em;
+      justify-content: flex-end;
+      gap: 18px 24px;
     }
 
-    .footer-links a {
-      opacity: 0.6;
-      transition: color 0.3s ease, opacity 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--color-primary-bright);
-      opacity: 1;
+    .footer-legal a {
+      color: rgba(255, 247, 222, 0.62);
+      font-size: 0.9rem;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
 
     @keyframes spin {
@@ -817,13 +979,26 @@
       }
     }
 
-    @keyframes orbitSpin {
+    @keyframes heroOrbitSpin {
       from {
         transform: translateX(-50%) rotateX(73deg) rotateZ(0deg);
       }
 
       to {
         transform: translateX(-50%) rotateX(73deg) rotateZ(360deg);
+      }
+    }
+
+    @keyframes heroWalletFloat {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg) scale(1);
+        filter: drop-shadow(0 28px 48px rgba(220, 184, 120, 0.28));
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(3deg) scale(1.03);
+        filter: drop-shadow(0 36px 62px rgba(220, 184, 120, 0.38));
       }
     }
 
@@ -891,7 +1066,7 @@
 
       .story-grid,
       .values-grid,
-      .footer-inner {
+      .footer-grid {
         grid-template-columns: 1fr;
       }
 
@@ -903,10 +1078,15 @@
         gap: 64px;
       }
 
-      .footer-inner,
-      .footer-links {
-        justify-items: center;
-        text-align: center;
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-socials,
+      .footer-legal {
+        justify-content: flex-start;
       }
     }
 
@@ -946,6 +1126,10 @@
         min-height: 320px;
       }
 
+      .hero-wallet {
+        width: min(300px, 82%);
+      }
+
       .hero-orbit {
         width: 230px;
         height: 230px;
@@ -976,6 +1160,25 @@
         gap: 8px;
       }
 
+      .footer-shell {
+        padding: 28px 22px;
+        border-radius: 24px;
+      }
+
+      .footer-identity {
+        align-items: flex-start;
+      }
+
+      .footer-logo-badge {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+      }
+
+      .footer-grid {
+        gap: 24px;
+      }
+
       .value-card,
       .trust-card {
         padding: 28px;
@@ -1000,13 +1203,16 @@
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <div class="brand">DIGIRICH</div>
+      <a href="../index.html" class="brand">
+        <img src="../assets/images/logo.svg" alt="DIGIRICH" class="brand-logo">
+        <span>DIGIRICH</span>
+      </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
       <nav class="nav" id="navMenu">
-        <a href="index.html">Home</a>
-        <a href="gold-rates.html">Gold Price</a>
-        <a href="calculator.html">Calculator</a>
-        <a class="active" href="about.html">About</a>
+        <a href="../index.html">Home</a>
+        <a href="/gold rates/">Gold Price</a>
+        <a href="/price calculator/">Calculator</a>
+        <a class="active" href="/about/">About</a>
         <a href="#">FAQ</a>
       </nav>
       <a href="#" class="btn btn-primary btn-sm">Get Started</a>
@@ -1026,6 +1232,7 @@
 
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-orbit"></div>
+        <img class="hero-wallet" src="../assets/images/3dicons-wallet-dynamic-color.png" alt="Digital wallet illustration">
         <div class="hero-about-stack">
           <div class="hero-panel hero-panel-back"></div>
           <div class="hero-panel hero-panel-front">
@@ -1143,7 +1350,7 @@
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
-                  src="assets/images/narayan-karn.jpeg"
+                  src="../assets/images/narayan-karn.jpeg"
                   alt="Arjun Mehta, Co-Founder and CEO"
                 >
               </div>
@@ -1158,7 +1365,7 @@
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
-                  src="assets/images/kalpana-karn.jpeg"
+                  src="../assets/images/kalpana-karn.jpeg"
                   alt="Ananya Sharma, Co-Founder and CTO"
                 >
               </div>
@@ -1196,20 +1403,89 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-brand">DIGIRICH</div>
-        <p class="footer-copy">DIGIRICH - Where Gold Meets Technology &copy; 2024</p>
-      </div>
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-top">
+          <div class="footer-identity">
+            <img src="../assets/images/logo.svg" alt="DIGIRICH" class="footer-logo">
+            <div>
+              <p class="footer-brand">DIGIRICH</p>
+              <p class="footer-tagline">Where Gold Meets Technology</p>
+            </div>
+          </div>
 
-      <div class="footer-links">
-        <a href="#">Terms of Service</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Contact Support</a>
-        <a href="#">Security</a>
+          <div class="footer-socials">
+            <a class="footer-social" href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2476 2476" aria-hidden="true">
+                <path d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5" fill="currentColor"></path>
+              </svg>
+            </a>
+            <a class="footer-social" href="#" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1036 990" aria-hidden="true">
+                <path d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z" fill="currentColor"></path>
+              </svg>
+            </a>
+            <a class="footer-social" href="#" aria-label="X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                <g clip-path="url(#clip0_84_15698)">
+                  <path fill="currentColor" d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_84_15698">
+                    <rect width="512" height="512" fill="#fff"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-grid">
+          <div>
+            <h3 class="footer-column-title">Explore</h3>
+            <div class="footer-column-links">
+              <a href="../index.html">Home</a>
+              <a href="gold-rates.html">Live Gold Price <span class="footer-chip">Live</span></a>
+              <a href="calculator.html">Gold Calculator</a>
+              <a href="about.html">About DIGIRICH</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Company</h3>
+            <div class="footer-column-links">
+              <a href="about.html">Our Mission</a>
+              <a href="#">FAQs</a>
+              <a href="#">Support Center</a>
+              <a href="#">Security Standards</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Connect With Us</h3>
+            <div class="footer-column-links">
+              <a class="footer-contact-line" href="mailto:helpdesk@digirich.co">helpdesk@digirich.co</a>
+              <a class="footer-contact-line" href="tel:+919876543210">+91 98765 43210</a>
+              <span class="footer-contact-line">Mon to Sat, 9:00 AM - 7:00 PM IST</span>
+              <span class="footer-contact-line">Trusted digital gold experience for modern India.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">DIGIRICH - Where Gold Meets Technology &copy; 2026</p>
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
+            <a href="#">Security</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
-  <script src="assets/js/script.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 </html>
