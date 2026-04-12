@@ -96,6 +96,26 @@ if (goldPage) {
     spread18k: document.getElementById("spread18k")
   };
 
+<<<<<<< HEAD
+  const resolveApiCandidates = () => {
+    const pathname = window.location.pathname.replace(/\\/g, "/");
+    const projectMatch = pathname.match(/\/([^/]+)\/[^/]*$/);
+    const projectName = projectMatch ? projectMatch[1] : "Digirich-website";
+
+    const candidates = [];
+    const currentOriginApi = new URL("api/gold-price.php", window.location.href).toString();
+    candidates.push(currentOriginApi);
+
+    if (/^(127\.0\.0\.1|localhost)$/i.test(window.location.hostname)) {
+      candidates.push(`http://localhost/${projectName}/api/gold-price.php`);
+      candidates.push(`http://127.0.0.1/${projectName}/api/gold-price.php`);
+    }
+
+    return [...new Set(candidates)];
+  };
+
+=======
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
   const formatCurrency = (value, fractionDigits = 2) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -215,6 +235,29 @@ if (goldPage) {
   }
 
   const fetchRemoteData = async () => {
+<<<<<<< HEAD
+    const candidates = resolveApiCandidates();
+
+    for (const url of candidates) {
+      try {
+        const response = await fetch(url, { headers: { Accept: "application/json" } });
+        if (!response.ok) {
+          continue;
+        }
+
+        const payload = await response.json();
+        if (!payload || payload.ok === false || !payload.updatedAt || !payload.purity || !payload.periods) {
+          continue;
+        }
+
+        state.data = payload;
+        renderHeroPrices();
+        render();
+        return;
+      } catch (error) {
+        // Try the next candidate. The page retains fallback data until a live endpoint responds.
+      }
+=======
     try {
       const response = await fetch("api/gold-price.php", { headers: { Accept: "application/json" } });
       if (!response.ok) {
@@ -231,6 +274,7 @@ if (goldPage) {
       render();
     } catch (error) {
       // Fallback content stays in place when the proxy is not configured.
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
     }
   };
 

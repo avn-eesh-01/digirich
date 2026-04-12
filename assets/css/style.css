@@ -1507,6 +1507,8 @@ h2 span {
   font-size: 15px;
 }
 
+<<<<<<< HEAD
+=======
 .calculator-page {
   background:
     radial-gradient(circle at top left, rgba(242, 222, 164, 0.55), rgba(242, 222, 164, 0) 24%),
@@ -2041,6 +2043,7 @@ h2 span {
   }
 }
 
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
 .site-footer {
   position: relative;
   padding: 40px 0 56px;
@@ -2305,10 +2308,13 @@ h2 span {
   .gold-sidebar {
     grid-template-columns: repeat(3, 1fr);
   }
+<<<<<<< HEAD
+=======
 
   .calculator-metrics {
     grid-template-columns: 1fr;
   }
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
 }
 
 @media (max-width: 760px) {
@@ -2473,6 +2479,8 @@ h2 span {
   .gold-periods {
     grid-template-columns: repeat(3, 1fr);
   }
+<<<<<<< HEAD
+=======
 
   .calculator-hero {
     padding: 42px 0 18px;
@@ -2513,6 +2521,7 @@ h2 span {
     min-height: auto;
     padding: 28px 22px;
   }
+>>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
 }
 
 @keyframes orbit-pulse {
