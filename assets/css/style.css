@@ -2043,7 +2043,6 @@ h2 span {
   }
 }
 
->>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
 .site-footer {
   position: relative;
   padding: 40px 0 56px;
@@ -2109,7 +2108,7 @@ h2 span {
 .footer-tagline {
   margin: 6px 0 0;
   max-width: 440px;
-  color: rgba(255, 247, 222, 0.7);
+  color: rgba(255, 247, 222, 0.85);
   font-size: 0.98rem;
   line-height: 1.7;
 }
@@ -2171,7 +2170,7 @@ h2 span {
 
 .footer-column-links a,
 .footer-contact-line {
-  color: rgba(255, 247, 222, 0.72);
+  color: rgba(255, 247, 222, 0.85);
   font-size: 1rem;
   line-height: 1.65;
   transition: color 0.25s ease, transform 0.25s ease;
@@ -2208,7 +2207,7 @@ h2 span {
 
 .footer-copy {
   margin: 0;
-  color: rgba(255, 247, 222, 0.6);
+  color: rgba(255, 247, 222, 0.8);
   font-size: 0.9rem;
   letter-spacing: 0.02em;
 }
@@ -2221,7 +2220,7 @@ h2 span {
 }
 
 .footer-legal a {
-  color: rgba(255, 247, 222, 0.62);
+  color: rgba(255, 247, 222, 0.8);
   font-size: 0.9rem;
   transition: color 0.25s ease, transform 0.25s ease;
 }

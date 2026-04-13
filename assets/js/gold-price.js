@@ -96,26 +96,21 @@ if (goldPage) {
     spread18k: document.getElementById("spread18k")
   };
 
-<<<<<<< HEAD
   const resolveApiCandidates = () => {
-    const pathname = window.location.pathname.replace(/\\/g, "/");
-    const projectMatch = pathname.match(/\/([^/]+)\/[^/]*$/);
-    const projectName = projectMatch ? projectMatch[1] : "Digirich-website";
-
+    // Build absolute URLs pointing to the project root API
     const candidates = [];
-    const currentOriginApi = new URL("api/gold-price.php", window.location.href).toString();
-    candidates.push(currentOriginApi);
-
-    if (/^(127\.0\.0\.1|localhost)$/i.test(window.location.hostname)) {
-      candidates.push(`http://localhost/${projectName}/api/gold-price.php`);
-      candidates.push(`http://127.0.0.1/${projectName}/api/gold-price.php`);
-    }
-
-    return [...new Set(candidates)];
+    
+    // Try: /projectname/api/gold-price.php and /Digirich-website/api/gold-price.php
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const port = window.location.port ? `:${window.location.port}` : '';
+    
+    candidates.push(`${protocol}//${hostname}${port}/Digirich-website/api/gold-price.php`);
+    candidates.push(`${protocol}//${hostname}${port}/api/gold-price.php`);
+    
+    return candidates;
   };
 
-=======
->>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
   const formatCurrency = (value, fractionDigits = 2) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -235,47 +230,45 @@ if (goldPage) {
   }
 
   const fetchRemoteData = async () => {
-<<<<<<< HEAD
     const candidates = resolveApiCandidates();
+    console.log("Attempting to fetch from candidates:", candidates);
 
     for (const url of candidates) {
       try {
+        console.log("Fetching from:", url);
         const response = await fetch(url, { headers: { Accept: "application/json" } });
+        console.log("Response status:", response.status, response.ok);
+        
         if (!response.ok) {
+          console.log("Response not OK, trying next candidate");
           continue;
         }
 
         const payload = await response.json();
+        console.log("Payload received:", payload);
+        
         if (!payload || payload.ok === false || !payload.updatedAt || !payload.purity || !payload.periods) {
+          console.log("Payload validation failed", {
+            hasPayload: !!payload,
+            ok: payload?.ok,
+            updatedAt: payload?.updatedAt,
+            purity: !!payload?.purity,
+            periods: !!payload?.periods
+          });
           continue;
         }
 
+        console.log("Successfully loaded API data!");
         state.data = payload;
         renderHeroPrices();
         render();
         return;
       } catch (error) {
+        console.log("Fetch error:", error.message);
         // Try the next candidate. The page retains fallback data until a live endpoint responds.
       }
-=======
-    try {
-      const response = await fetch("api/gold-price.php", { headers: { Accept: "application/json" } });
-      if (!response.ok) {
-        return;
-      }
-
-      const payload = await response.json();
-      if (!payload || payload.ok === false || !payload.updatedAt || !payload.purity || !payload.periods) {
-        return;
-      }
-
-      state.data = payload;
-      renderHeroPrices();
-      render();
-    } catch (error) {
-      // Fallback content stays in place when the proxy is not configured.
->>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
     }
+    console.log("All candidates failed, using fallback data");
   };
 
   renderHeroPrices();
