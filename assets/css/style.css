@@ -102,7 +102,7 @@ a {
 }
 
 .footer-logo {
-  height: 56px;
+  height: 86px;
   width: auto;
   display: block;
   margin-bottom: 8px;
@@ -2092,7 +2092,7 @@ h2 span {
 }
 
 .footer-logo {
-  height: 56px;
+  height: 86px;
   width: auto;
   display: block;
 }
@@ -2308,13 +2308,9 @@ h2 span {
   .gold-sidebar {
     grid-template-columns: repeat(3, 1fr);
   }
-<<<<<<< HEAD
-=======
-
   .calculator-metrics {
     grid-template-columns: 1fr;
   }
->>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
 }
 
 @media (max-width: 760px) {
@@ -2479,9 +2475,6 @@ h2 span {
   .gold-periods {
     grid-template-columns: repeat(3, 1fr);
   }
-<<<<<<< HEAD
-=======
-
   .calculator-hero {
     padding: 42px 0 18px;
   }
@@ -2521,7 +2514,23 @@ h2 span {
     min-height: auto;
     padding: 28px 22px;
   }
->>>>>>> 72923da33da87a584d90e97616dc8d93aaa64efb
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+
+  .footer-legal {
+    justify-content: center;
+  }
 }
 
 @keyframes orbit-pulse {
