@@ -62,16 +62,59 @@ function generateHistoricalSeries(float $currentPrice, int $days = 7): array {
     return $series;
 }
 
+// Cache file path for storing last successful API response
+$cacheDir = __DIR__ . '/../cache';
+$cacheFile = $cacheDir . '/gold-price-cache.json';
+
+// Create cache directory if it doesn't exist
+if (!is_dir($cacheDir)) {
+    @mkdir($cacheDir, 0755, true);
+}
+
+// Function to save cache
+function saveCacheData(array $data, string $cacheFile): void {
+    try {
+        file_put_contents($cacheFile, json_encode($data), LOCK_EX);
+        error_log('Cache saved successfully');
+    } catch (Exception $e) {
+        error_log('Failed to save cache: ' . $e->getMessage());
+    }
+}
+
+// Function to get cached data
+function getCachedData(string $cacheFile): ?array {
+    if (file_exists($cacheFile)) {
+        try {
+            $content = file_get_contents($cacheFile);
+            $data = json_decode($content, true);
+            error_log('Cache retrieved successfully');
+            return is_array($data) ? $data : null;
+        } catch (Exception $e) {
+            error_log('Failed to read cache: ' . $e->getMessage());
+        }
+    }
+    return null;
+}
+
 try {
     // Fetch current gold price
     $currentData = fetchMetalPrice('latest');
     
     // The API returns rates directly (not in a 'data' key)
     if (!$currentData || !isset($currentData['rates']) || !isset($currentData['rates']['INR'])) {
+        // API failed, try to return cached data
+        error_log('API failed to fetch current data, checking cache');
+        $cachedData = getCachedData($cacheFile);
+        if ($cachedData) {
+            http_response_code(200);
+            echo json_encode($cachedData);
+            exit;
+        }
+        
         http_response_code(500);
         echo json_encode([
             'ok' => false,
-            'message' => 'Unable to fetch current gold prices.'
+            'message' => 'Unable to fetch current gold prices and no cached data available.'
         ]);
         exit;
     }
@@ -158,10 +201,23 @@ try {
         'periods' => $periods
     ];
     
+    // Save successful response to cache
+    saveCacheData($response, $cacheFile);
+    
     http_response_code(200);
     echo json_encode($response);
     
 } catch (Exception $e) {
+    error_log('Exception occurred: ' . $e->getMessage());
+    
+    // Try to return cached data on error
+    $cachedData = getCachedData($cacheFile);
+    if ($cachedData) {
+        http_response_code(200);
+        echo json_encode($cachedData);
+        exit;
+    }
+    
     http_response_code(500);
     echo json_encode([
         'ok' => false,

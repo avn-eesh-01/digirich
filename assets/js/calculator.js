@@ -1,20 +1,19 @@
 const calculatorPage = document.querySelector(".calculator-page");
 
 if (calculatorPage) {
-  const fallbackRates = {
-    updatedAt: "2026-04-10T01:03:00+05:30",
-    purity: {
-      "24K": { perGram: 7452 },
-      "22K": { perGram: 6827.03 },
-      "18K": { perGram: 5224.45 },
-      "14K": { perGram: 4068.23 }
-    }
+  const purityFactor = {
+    "24K": 1.0,
+    "22K": 0.916,
+    "18K": 0.701,
+    "14K": 0.5833
   };
 
   const state = {
     mode: "weight",
     purity: "24K",
-    rates: fallbackRates
+    rates: null,
+    isFromCache: false,
+    cacheKey: "digirich_gold_price_cache"
   };
 
   const refs = {
@@ -38,26 +37,38 @@ if (calculatorPage) {
     metricKg: document.getElementById("metricKg")
   };
 
+  // Storage helpers
+  const StorageHelper = {
+    save: (data) => {
+      try {
+        localStorage.setItem(state.cacheKey, JSON.stringify(data));
+        console.log('Calculator data saved to localStorage');
+      } catch (e) {
+        console.warn('Failed to save calculator data to localStorage:', e);
+      }
+    },
+    load: () => {
+      try {
+        const data = localStorage.getItem(state.cacheKey);
+        return data ? JSON.parse(data) : null;
+      } catch (e) {
+        console.warn('Failed to load calculator data from localStorage:', e);
+        return null;
+      }
+    }
+  };
+
   const desktopHoverQuery = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1025px)");
 
   const apiCandidates = () => {
-    const candidates = ["api/gold-price.php"];
-    const { origin, pathname, port, hostname } = window.location;
-    const segments = pathname.split("/").filter(Boolean);
-    const projectName = segments.length > 1 ? segments[0] : "Digirich-website";
-
-    if (port === "5500" || port === "5501" || hostname === "127.0.0.1") {
-      candidates.push(`http://localhost/${projectName}/api/gold-price.php`);
-      candidates.push(`http://127.0.0.1/${projectName}/api/gold-price.php`);
-      candidates.push("http://localhost/Digirich-website/api/gold-price.php");
-      candidates.push("http://127.0.0.1/Digirich-website/api/gold-price.php");
-    }
-
-    if (origin.startsWith("http")) {
-      candidates.push(`${origin}/api/gold-price.php`);
-    }
-
-    return [...new Set(candidates)];
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const port = window.location.port ? `:${window.location.port}` : '';
+    
+    return [
+      `${protocol}//${hostname}${port}/Digirich-website/api/gold-price.php`,
+      `${protocol}//${hostname}${port}/api/gold-price.php`
+    ];
   };
 
   const formatCurrency = (value, fractionDigits = 2) =>
@@ -76,16 +87,22 @@ if (calculatorPage) {
       maximumFractionDigits: 2
     }).format(value);
 
-  const getRate = () => state.rates.purity[state.purity]?.perGram || 0;
+  const getRate = () => state.rates?.purity?.[state.purity]?.perGram || 0;
 
   const renderMetrics = () => {
+    if (!state.rates) return;
     const gramRate = state.rates.purity["24K"]?.perGram || 0;
-    refs.metricGram.textContent = formatCurrency(gramRate, 0);
-    refs.metricTola.textContent = formatCurrency(gramRate * 11.66, 0);
-    refs.metricKg.textContent = formatCompactCurrency(gramRate * 1000);
+    if (refs.metricGram) refs.metricGram.textContent = formatCurrency(gramRate, 0);
+    if (refs.metricTola) refs.metricTola.textContent = formatCurrency(gramRate * 11.66, 0);
+    if (refs.metricKg) refs.metricKg.textContent = formatCompactCurrency(gramRate * 1000);
   };
 
   const render = () => {
+    if (!state.rates) {
+      console.log('No rates data available for rendering');
+      return;
+    }
+    
     const numericInput = Number.parseFloat(refs.input.value) || 0;
     const rate = getRate();
     const makingRate = 0.05;
@@ -164,15 +181,24 @@ if (calculatorPage) {
   }
 
   const fetchRemoteData = async () => {
-    for (const endpoint of apiCandidates()) {
+    const endpoints = apiCandidates();
+    console.log("Calculator: Attempting to fetch from endpoints:", endpoints);
+
+    for (const endpoint of endpoints) {
       try {
+        console.log("Calculator: Fetching from:", endpoint);
         const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
+        
         if (!response.ok) {
+          console.log("Calculator: Response not OK, trying next candidate");
           continue;
         }
 
         const payload = await response.json();
+        console.log("Calculator: Payload received:", payload);
+        
         if (!payload?.purity?.["24K"]?.perGram) {
+          console.log("Calculator: Payload validation failed");
           continue;
         }
 
@@ -180,25 +206,63 @@ if (calculatorPage) {
           updatedAt: payload.updatedAt,
           purity: {
             "24K": { perGram: payload.purity["24K"].perGram },
-            "22K": { perGram: payload.purity["22K"]?.perGram || payload.purity["24K"].perGram * 0.916 },
-            "18K": { perGram: payload.purity["18K"]?.perGram || payload.purity["24K"].perGram * 0.701 },
-            "14K": { perGram: payload.purity["24K"].perGram * 0.585 }
+            "22K": { perGram: payload.purity["22K"]?.perGram || payload.purity["24K"].perGram * purityFactor["22K"] },
+            "18K": { perGram: payload.purity["18K"]?.perGram || payload.purity["24K"].perGram * purityFactor["18K"] },
+            "14K": { perGram: payload.purity["24K"].perGram * purityFactor["14K"] }
           }
         };
-
+        
+        state.isFromCache = false;
+        StorageHelper.save(payload);
+        console.log("Calculator: Successfully loaded API data!");
         renderMetrics();
         render();
         return;
       } catch (error) {
-        // Try the next endpoint candidate.
+        console.log("Calculator: Fetch error:", error.message);
       }
     }
-
-    renderMetrics();
-    render();
+    
+    console.log("Calculator: All API attempts failed, trying localStorage");
+    const cachedData = StorageHelper.load();
+    if (cachedData && cachedData.purity) {
+      console.log("Calculator: Using cached data from localStorage");
+      state.rates = {
+        updatedAt: cachedData.updatedAt,
+        purity: {
+          "24K": { perGram: cachedData.purity["24K"]?.perGram || 0 },
+          "22K": { perGram: cachedData.purity["22K"]?.perGram || 0 },
+          "18K": { perGram: cachedData.purity["18K"]?.perGram || 0 },
+          "14K": { perGram: cachedData.purity["24K"]?.perGram ? cachedData.purity["24K"].perGram * purityFactor["14K"] : 0 }
+        }
+      };
+      state.isFromCache = true;
+      renderMetrics();
+      render();
+      return;
+    }
+    
+    console.log("Calculator: No data available - all API attempts failed and no cache found");
   };
 
-  renderMetrics();
-  render();
+  // Try to load cached data immediately for better UX
+  const initialCache = StorageHelper.load();
+  if (initialCache && initialCache.purity) {
+    console.log("Calculator: Loading initial cache");
+    state.rates = {
+      updatedAt: initialCache.updatedAt,
+      purity: {
+        "24K": { perGram: initialCache.purity["24K"]?.perGram || 0 },
+        "22K": { perGram: initialCache.purity["22K"]?.perGram || 0 },
+        "18K": { perGram: initialCache.purity["18K"]?.perGram || 0 },
+        "14K": { perGram: initialCache.purity["24K"]?.perGram ? initialCache.purity["24K"].perGram * purityFactor["14K"] : 0 }
+      }
+    };
+    state.isFromCache = true;
+    renderMetrics();
+    render();
+  }
+  
+  // Then fetch fresh data
   fetchRemoteData();
 }

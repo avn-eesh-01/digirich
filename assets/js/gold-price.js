@@ -1,78 +1,19 @@
 const goldPage = document.querySelector(".gold-page");
 
 if (goldPage) {
-  const fallbackData = {
-    updatedAt: "2026-04-10T01:03:00+05:30",
-    purity: {
-      "24K": {
-        perGram: 15753.5,
-        tenGram: 147220.4
-      },
-      "22K": {
-        perGram: 14428.7,
-        tenGram: 134956.9
-      },
-      "18K": {
-        perGram: 11041.53,
-        tenGram: 110415.3
-      }
-    },
-    periods: {
-      "1W": {
-        label: "1 Week Change",
-        change: 1.75,
-        startLabel: "4 Apr 26",
-        endLabel: "10 Apr 26",
-        series: [15480, 15430, 15380, 15310, 15340, 15410, 15470, 15540, 15640, 15710, 15753.5]
-      },
-      "1M": {
-        label: "1 Month Change",
-        change: 3.94,
-        startLabel: "10 Mar 26",
-        endLabel: "10 Apr 26",
-        series: [15160, 15210, 15180, 15240, 15310, 15370, 15430, 15410, 15520, 15670, 15753.5]
-      },
-      "6M": {
-        label: "6 Month Change",
-        change: 11.38,
-        startLabel: "10 Oct 25",
-        endLabel: "10 Apr 26",
-        series: [14140, 14220, 14350, 14410, 14560, 14790, 14950, 15120, 15410, 15620, 15753.5]
-      },
-      "1Y": {
-        label: "1 Year Change",
-        change: 23.67,
-        startLabel: "10 Apr 25",
-        endLabel: "10 Apr 26",
-        series: [12740, 12890, 13080, 13220, 13440, 13710, 14020, 14530, 15040, 15410, 15753.5]
-      },
-      "3Y": {
-        label: "3 Year Change",
-        change: 41.12,
-        startLabel: "10 Apr 23",
-        endLabel: "10 Apr 26",
-        series: [11120, 11580, 11890, 12110, 12430, 12920, 13440, 14110, 14820, 15320, 15753.5]
-      },
-      "5Y": {
-        label: "5 Year Change",
-        change: 58.44,
-        startLabel: "10 Apr 21",
-        endLabel: "10 Apr 26",
-        series: [9940, 10220, 10870, 11320, 11980, 12620, 13140, 13920, 14710, 15240, 15753.5]
-      }
-    }
-  };
-
   const purityFactors = {
     "24K": 1,
     "22K": 0.916,
     "18K": 0.701
   };
 
+  // Initialize empty state
   const state = {
-    data: fallbackData,
+    data: null,
     purity: "24K",
-    period: "1W"
+    period: "1W",
+    isFromCache: false,
+    cacheKey: "digirich_gold_price_cache"
   };
 
   const refs = {
@@ -94,6 +35,34 @@ if (goldPage) {
     spread24k: document.getElementById("spread24k"),
     spread22k: document.getElementById("spread22k"),
     spread18k: document.getElementById("spread18k")
+  };
+
+  // Storage helpers
+  const StorageHelper = {
+    save: (data) => {
+      try {
+        localStorage.setItem(state.cacheKey, JSON.stringify(data));
+        console.log('Data saved to localStorage');
+      } catch (e) {
+        console.warn('Failed to save to localStorage:', e);
+      }
+    },
+    load: () => {
+      try {
+        const data = localStorage.getItem(state.cacheKey);
+        return data ? JSON.parse(data) : null;
+      } catch (e) {
+        console.warn('Failed to load from localStorage:', e);
+        return null;
+      }
+    },
+    clear: () => {
+      try {
+        localStorage.removeItem(state.cacheKey);
+      } catch (e) {
+        console.warn('Failed to clear localStorage:', e);
+      }
+    }
   };
 
   const resolveApiCandidates = () => {
@@ -179,6 +148,7 @@ if (goldPage) {
   };
 
   const renderHeroPrices = () => {
+    if (!state.data) return;
     refs.hero24k.textContent = formatCurrency(state.data.purity["24K"].tenGram);
     refs.hero22k.textContent = formatCurrency(state.data.purity["22K"].tenGram);
     refs.hero18k.textContent = formatCurrency(state.data.purity["18K"].tenGram);
@@ -188,13 +158,23 @@ if (goldPage) {
   };
 
   const render = () => {
+    if (!state.data) {
+      console.log('No data available to render');
+      return;
+    }
+    
     const activePeriod = state.data.periods[state.period];
     const activePrice = state.data.purity[state.purity].perGram;
     const series = buildSeriesForPurity(state.period, state.purity);
     const { line, area, lastPoint } = buildPath(series);
     const changePrefix = activePeriod.change >= 0 ? "+" : "-";
+    
+    let dateText = formatTimestamp(state.data.updatedAt);
+    if (state.isFromCache) {
+      dateText = "Last updated: " + dateText;
+    }
 
-    refs.dateStamp.textContent = formatTimestamp(state.data.updatedAt);
+    refs.dateStamp.textContent = dateText;
     refs.pricePerGram.textContent = formatNumber(activePrice);
     refs.changeLabel.textContent = activePeriod.label;
     refs.changeValue.textContent = `${changePrefix} ${Math.abs(activePeriod.change).toFixed(2)}%`;
@@ -260,18 +240,39 @@ if (goldPage) {
 
         console.log("Successfully loaded API data!");
         state.data = payload;
+        state.isFromCache = false;
+        StorageHelper.save(payload);
         renderHeroPrices();
         render();
         return;
       } catch (error) {
         console.log("Fetch error:", error.message);
-        // Try the next candidate. The page retains fallback data until a live endpoint responds.
       }
     }
-    console.log("All candidates failed, using fallback data");
+    
+    console.log("All API candidates failed, trying localStorage");
+    const cachedData = StorageHelper.load();
+    if (cachedData) {
+      console.log("Using cached data from localStorage");
+      state.data = cachedData;
+      state.isFromCache = true;
+      renderHeroPrices();
+      render();
+      return;
+    }
+    
+    console.log("No data available - all API attempts failed and no cache found");
   };
 
-  renderHeroPrices();
-  render();
+  // Try to load cached data immediately for better UX
+  const initialCache = StorageHelper.load();
+  if (initialCache) {
+    state.data = initialCache;
+    state.isFromCache = true;
+    renderHeroPrices();
+    render();
+  }
+  
+  // Then fetch fresh data
   fetchRemoteData();
 }
