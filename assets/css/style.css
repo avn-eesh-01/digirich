@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --color-background: #ffffff;
   --color-surface: #ffffff;
   --color-surface-low: #ffffff;
@@ -75,8 +75,9 @@ a {
   align-items: center;
   justify-content: space-between;
   min-height: auto;
+  height: 72px;
   gap: 24px;
-  padding: 16px 0;
+  padding: 0;
 }
 
 .brand {
@@ -95,13 +96,13 @@ a {
 }
 
 .brand-logo {
-  height: 50px;
+  height: 80px;
   width: auto;
   display: block;
 }
 
 .footer-logo {
-  height: 60px;
+  height: 56px;
   width: auto;
   display: block;
   margin-bottom: 8px;
@@ -2091,7 +2092,7 @@ h2 span {
 }
 
 .footer-logo {
-  height: 60px;
+  height: 56px;
   width: auto;
   display: block;
 }
