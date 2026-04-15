@@ -8,9 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <style>
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="../assets/css/style.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+   <style>
+    .shine-text {
+      background: linear-gradient(135deg, #735c00 0%, #d4af37 50%, #735c00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine-text 4s linear infinite;
+    }
+
+    @keyframes shine-text {
+      to { background-position: 200% center; }
+    }
+
     :root {
       --color-background: #ffffff;
       --color-surface: #ffffff;
@@ -583,6 +598,33 @@
       font-weight: 600;
     }
 
+    .founder-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 6px 16px;
+      background: rgba(115, 92, 0, 0.05);
+      border: 1px solid rgba(115, 92, 0, 0.1);
+      border-radius: var(--radius-full);
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .founder-phone:hover {
+      background: var(--color-primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(115, 92, 0, 0.2);
+    }
+
+    .founder-phone i {
+      font-size: 0.85rem;
+    }
+
     .founder-quote {
       max-width: 280px;
       margin: 16px auto 0;
@@ -590,6 +632,12 @@
       font-size: 0.95rem;
       line-height: 1.7;
       font-style: italic;
+    }
+
+    .founder-card {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
     .trust {
@@ -1058,7 +1106,7 @@
         </div>
 
         <div class="story-copy">
-          <h2>The Vision of DIGIRICH</h2>
+          <h2>The Vision of <span class="shine-text">DIGIRICH</span></h2>
           <div class="story-text">
             <p>
               India's relationship with gold is not just about investment; it is cultural, emotional,
@@ -1066,12 +1114,11 @@
               physical gold is often fraught with high spreads and security concerns.
             </p>
             <p class="emphasis">
-              DIGIRICH was born to modernize this legacy. By leveraging cutting-edge fintech
-              infrastructure, we've built India's next-generation digital gold platform.
+              DIGIRICH was born to modernize this legacy. By leveraging the modern fintech infrastructure, we've built India's next-generation digital gold platform.
             </p>
             <p>
               Our platform allows users to buy gold in fractions, starting with as little as
-              &#8377;10, backed by ALGORYNIX DIGITAL PRIVATE LIMITED, 100% insured physical reserves in secure vaults. We believe that
+              &#8377;10, backed by <b>ALGORYNIX DIGITAL PRIVATE LIMITED</b>, 100% insured physical reserves in secure vaults. We believe that
               premium wealth preservation should be a right, not a privilege.
             </p>
           </div>
@@ -1129,36 +1176,41 @@
           <h2 class="section-title">The Minds Behind DIGIRICH</h2>
           <p class="section-label">Leading with Vision &amp; Integrity</p>
         </div>
-
         <div class="founders">
-          <article class="founder-card">
+          <article class="founder-card" id="founder-narayan">
             <div class="founder-avatar-wrap">
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
                   src="../assets/images/narayan-karn.jpeg"
-                  alt="Arjun Mehta, Co-Founder and CEO"
+                  alt="Narayan Karn, Director and CEO"
                 >
               </div>
             </div>
             <h3>Narayan Karn</h3>
             <p class="founder-role">Director &amp; CEO</p>
             <p class="founder-quote">"Visionary leader driving financial innovation and digital asset transformation."</p>
+            <a href="tel:+919355547771" class="founder-phone">
+              <i class="fas fa-phone"></i> +91 9355547771
+            </a>
           </article>
-
-          <article class="founder-card">
+ 
+           <article class="founder-card" id="founder-kalpana">
             <div class="founder-avatar-wrap">
               <div class="founder-ring" aria-hidden="true"></div>
               <div class="founder-avatar">
                 <img
                   src="../assets/images/kalpana-karn.jpeg"
-                  alt="Ananya Sharma, Co-Founder and CTO"
+                  alt="Kalpana Kumari, Co-Founder and Strategic Director"
                 >
               </div>
             </div>
             <h3>Kalpana Kumari</h3>
             <p class="founder-role">Co-Founder &amp; Strategic Director</p>
             <p class="founder-quote">"Strategic director ensuring operational excellence and customer trust."</p>
+            <a href="tel:+919355547772" class="founder-phone">
+              <i class="fas fa-phone"></i> +91 9355547772
+            </a>
           </article>
         </div>
       </div>
@@ -1276,5 +1328,73 @@
     </div>
   </footer>
   <script src="../assets/js/script.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Team Section Animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // Entrance Animation
+      gsap.to('.founder-card', {
+        scrollTrigger: {
+          trigger: '.founders',
+          start: 'top 85%',
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.3,
+        ease: "power3.out"
+      });
+
+      // Hover Interaction: 3D Tilt
+      document.querySelectorAll('.founder-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+
+          gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            scale: 1.05,
+            duration: 0.5,
+            ease: "power2.out",
+            overwrite: true
+          });
+
+          // Animate Ring on hover
+          const ring = card.querySelector('.founder-ring');
+          gsap.to(ring, {
+            rotate: rotateY * 5,
+            scale: 1.1,
+            borderColor: "#d4af37",
+            duration: 0.5
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+          });
+
+          const ring = card.querySelector('.founder-ring');
+          gsap.to(ring, {
+            rotate: 0,
+            scale: 1,
+            borderColor: "rgba(212, 175, 55, 0.4)",
+            duration: 0.8
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>

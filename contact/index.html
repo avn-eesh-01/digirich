@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
     :root {
       --color-background: #ffffff;
@@ -79,47 +81,29 @@
     .contact-hero {
       position: relative;
       text-align: center;
-      padding: 80px 0 60px;
-      background:
-        radial-gradient(ellipse 800px 500px at 50% 0%, rgba(212, 175, 55, 0.12), transparent 60%),
-        linear-gradient(135deg, rgba(115, 92, 0, 0.04) 0%, rgba(212, 175, 55, 0.04) 100%);
+      padding: 100px 0 80px;
+      background: 
+        radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.15), transparent 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(212, 175, 55, 0.03) 100%);
       overflow: hidden;
-    }
-
-    .contact-hero::before {
-      content: "";
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      width: 600px;
-      height: 600px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
-      animation: heroGlow 6s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes heroGlow {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-      50% { transform: translateX(-50%) scale(1.15); opacity: 0.6; }
     }
 
     .contact-hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: var(--radius-full);
-      background: rgba(255, 248, 225, 0.92);
-      border: 1px solid rgba(221, 197, 121, 0.5);
-      font-size: 12px;
+      background: rgba(255, 248, 225, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(221, 197, 121, 0.4);
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #866200;
       margin-bottom: 28px;
-      animation: fadeInDown 0.8s ease both;
+      box-shadow: 0 4px 12px rgba(115, 92, 0, 0.05);
     }
 
     .contact-hero-badge::before {
@@ -139,26 +123,32 @@
 
     .contact-hero h1 {
       font-family: "Manrope", sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
       font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin: 0 0 20px 0;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 0 0 24px 0;
       color: var(--color-text);
-      animation: fadeInUp 0.8s ease 0.15s both;
     }
 
     .contact-hero h1 span {
-      color: var(--color-primary);
+      background: linear-gradient(135deg, #735c00 0%, #d4af37 50%, #735c00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine-text 4s linear infinite;
+    }
+
+    @keyframes shine-text {
+      to { background-position: 200% center; }
     }
 
     .contact-hero p {
-      font-size: 1.15rem;
-      line-height: 1.7;
+      font-size: 1.25rem;
+      line-height: 1.6;
       color: var(--color-text-muted);
       margin: 0 auto;
-      max-width: 640px;
-      animation: fadeInUp 0.8s ease 0.3s both;
+      max-width: 700px;
     }
 
     /* ─── CONTACT CARDS GRID ─── */
@@ -174,75 +164,63 @@
 
     .contact-card {
       position: relative;
-      padding: 40px 32px;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(220, 210, 180, 0.55);
-      box-shadow: 0 18px 40px rgba(50, 38, 8, 0.06);
+      padding: 48px 32px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 20px 40px -12px rgba(115, 92, 0, 0.12);
       text-align: center;
-      overflow: hidden;
-      transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.45s ease, border-color 0.35s ease;
-      opacity: 0;
-      transform: translateY(36px);
-      animation: cardReveal 0.7s ease forwards;
-    }
-
-    .contact-card:nth-child(1) { animation-delay: 0.2s; }
-    .contact-card:nth-child(2) { animation-delay: 0.35s; }
-    .contact-card:nth-child(3) { animation-delay: 0.5s; }
-
-    @keyframes cardReveal {
-      to { opacity: 1; transform: translateY(0); }
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .contact-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at top, rgba(218, 182, 71, 0.08), rgba(218, 182, 71, 0) 50%),
-        linear-gradient(120deg, rgba(255, 255, 255, 0) 20%, rgba(249, 241, 212, 0.4) 50%, rgba(255, 255, 255, 0) 80%);
-      opacity: 0;
-      transform: translateX(-20%);
-      transition: opacity 0.4s ease, transform 0.5s ease;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), transparent 40%, rgba(212, 175, 55, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
       pointer-events: none;
     }
 
     .contact-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(200, 162, 39, 0.32);
-      box-shadow: 0 28px 56px rgba(46, 35, 5, 0.1);
-    }
-
-    .contact-card:hover::before {
-      opacity: 1;
-      transform: translateX(0);
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.08),
+        0 30px 60px -15px rgba(115, 92, 0, 0.2);
     }
 
     .contact-card-icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 24px;
-      border-radius: 22px;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 28px;
+      border-radius: 24px;
       display: grid;
       place-items: center;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 58%),
-        linear-gradient(145deg, #fbf3dd 0%, #f3e5bd 100%);
-      border: 1px solid rgba(200, 162, 39, 0.14);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.85),
-        0 10px 24px rgba(184, 144, 27, 0.08);
-      font-size: 1.8rem;
-      color: #8f6d00;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: linear-gradient(145deg, #fff7e1 0%, #f7e1a6 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: #866200;
+      font-size: 2rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(115, 92, 0, 0.06);
     }
 
     .contact-card:hover .contact-card-icon {
-      transform: translateY(-4px) scale(1.06);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        0 16px 32px rgba(184, 144, 27, 0.14);
+      transform: scale(1.1) rotate(5deg);
+      background: linear-gradient(145deg, #d4af37 0%, #866200 100%);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(115, 92, 0, 0.2);
     }
 
     .contact-card h3 {
@@ -270,28 +248,51 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 14px;
-      background: rgba(247, 225, 166, 0.18);
-      border: 1px solid rgba(212, 175, 55, 0.15);
+      gap: 12px;
+      padding: 14px 24px;
+      border-radius: 16px;
+      background: rgba(247, 225, 166, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.1);
       color: var(--color-text);
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
     }
 
     .contact-link:hover {
-      background: rgba(247, 225, 166, 0.38);
-      border-color: rgba(212, 175, 55, 0.35);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.1);
+      background: rgba(247, 225, 166, 0.25);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(115, 92, 0, 0.08);
+    }
+
+    .contact-link:hover::after {
+      transform: translateX(100%);
     }
 
     .contact-link i {
       color: var(--color-primary);
-      font-size: 0.85rem;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-link:hover i {
+      transform: scale(1.2);
     }
 
     .contact-detail-text {
@@ -480,7 +481,7 @@
       border: 1px solid rgba(220, 210, 180, 0.55);
       overflow: hidden;
       transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.45s ease;
-      opacity: 0;
+      /* Initial state handled by GSAP ScrollTrigger autoAlpha: 0 */
       transform: translateY(28px);
     }
 
@@ -941,9 +942,13 @@
                 <i class="fab fa-instagram"></i>
                 Instagram
               </a>
-              <a href="#" class="contact-link">
+              <a href="https://www.linkedin.com/in/digirich-india-29a139403/" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <i class="fab fa-linkedin-in"></i>
                 LinkedIn
+              </a>
+              <a href="https://x.com/DigirichIndia" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <i class="fab fa-x-twitter"></i>
+                Twitter
               </a>
             </div>
             <p class="contact-detail-text" style="margin-top: 16px;">Stay updated with the latest gold market insights, offers, and company news.</p>
@@ -961,13 +966,14 @@
             <h2>Visit Our Office</h2>
             <p class="address-text">
               <strong>ALGORYNIX DIGITAL PRIVATE LIMITED</strong><br>
-              New Delhi, India<br><br>
+              C-240/241, Flat No.-6, Pandav Nagar,<br>
+              New Delhi - 110092<br><br>
               Our team is based in the heart of the capital city, ensuring seamless operations and accessible service across all of India.
             </p>
             <div class="address-meta">
               <span class="address-badge">
                 <i class="fas fa-map-marker-alt"></i>
-                New Delhi, India
+                Pandav Nagar, New Delhi
               </span>
               <span class="address-badge">
                 <i class="fas fa-building"></i>
@@ -981,7 +987,7 @@
           </div>
           <div class="address-map-placeholder">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.54865072052!2d77.04417438261053!3d28.527280449884565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=C-240/241,%20Flat%20No.-6,%20Pandav%20Nagar,%20New%20Delhi%20-%20110092&t=&z=15&ie=UTF8&iwloc=&output=embed"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
@@ -1168,41 +1174,71 @@
 
   <script src="../assets/js/script.js"></script>
   <script>
-    // Intersection Observer for scroll reveal animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    };
+    gsap.registerPlugin(ScrollTrigger);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+    document.addEventListener('DOMContentLoaded', () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      // Hero animations
+      tl.from('.contact-hero-badge', { autoAlpha: 0, y: -20, duration: 0.8 })
+        .from('.contact-hero h1', { autoAlpha: 0, y: 20, duration: 1 }, "-=0.4")
+        .from('.contact-hero p', { autoAlpha: 0, y: 20, duration: 1 }, "-=0.6")
+        .from('.contact-card', { 
+          autoAlpha: 0, 
+          y: 40, 
+          duration: 0.8, 
+          stagger: 0.2,
+          clearProps: "all" // Clear all to avoid conflict with tilt
+        }, "-=0.6");
+
+      // Scroll reveals for sections
+      gsap.from('.address-banner', {
+        scrollTrigger: {
+          trigger: '.address-banner',
+          start: 'top 85%',
+        },
+        autoAlpha: 0,
+        y: 40,
+        duration: 1
       });
-    }, observerOptions);
 
-    document.querySelectorAll('.avail-card').forEach(card => {
-      observer.observe(card);
+      gsap.from('.avail-card', {
+        scrollTrigger: {
+          trigger: '.availability-grid',
+          start: 'top 85%',
+        },
+        autoAlpha: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.3
+      });
+
+      gsap.from('.contact-cta-box', {
+        scrollTrigger: {
+          trigger: '.contact-cta-box',
+          start: 'top 90%',
+        },
+        autoAlpha: 0,
+        scale: 0.95,
+        duration: 1.2,
+        ease: "elastic.out(1, 0.8)"
+      });
     });
 
-    // Smooth parallax effect on hero glow
+    // Hero Parallax Effect
     document.addEventListener('mousemove', (e) => {
-      const hero = document.querySelector('.contact-hero');
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      if (e.clientY > rect.bottom) return;
+      const { clientX, clientY } = e;
+      const xPos = (clientX / window.innerWidth - 0.5) * 30;
+      const yPos = (clientY / window.innerHeight - 0.5) * 30;
 
-      const xMove = ((e.clientX / window.innerWidth) - 0.5) * 20;
-      const yMove = ((e.clientY / window.innerHeight) - 0.5) * 10;
-
-      const glow = hero.querySelector('::before');
-      hero.style.setProperty('--glow-x', `${xMove}px`);
-      hero.style.setProperty('--glow-y', `${yMove}px`);
+      gsap.to('.contact-hero', {
+        backgroundPosition: `${50 + xPos * 0.1}% ${yPos * 0.1}%`,
+        duration: 0.7,
+        ease: "power2.out"
+      });
     });
 
-    // Contact card tilt effect on hover
+    // Premium Card Tilt Effect
     document.querySelectorAll('.contact-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -1210,14 +1246,42 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -3;
-        const rotateY = ((x - centerX) / centerX) * 3;
+        
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
 
-        card.style.transform = `translateY(-10px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        gsap.to(card, {
+          rotateX: rotateX,
+          rotateY: rotateY,
+          translateZ: 20,
+          scale: 1.02,
+          duration: 0.4,
+          ease: "power3.out",
+          overwrite: true
+        });
+
+        // Icon parallax inside card
+        const icon = card.querySelector('.contact-card-icon');
+        gsap.to(icon, {
+          x: rotateY * 2,
+          y: -rotateX * 2,
+          duration: 0.4,
+          ease: "power3.out"
+        });
       });
 
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) perspective(800px) rotateX(0) rotateY(0)';
+        gsap.to(card, {
+          rotateX: 0,
+          rotateY: 0,
+          translateZ: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "back.out(1.7)"
+        });
+        
+        const icon = card.querySelector('.contact-card-icon');
+        gsap.to(icon, { x: 0, y: 0, duration: 0.6 });
       });
     });
   </script>
