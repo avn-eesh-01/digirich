@@ -1322,7 +1322,24 @@ h2 span {
   fill: #fff;
   stroke: #b98308;
   stroke-width: 4;
+  animation: chart-dot-pulse 2s infinite ease-in-out;
 }
+
+@keyframes chart-dot-pulse {
+  0% {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(185, 131, 8, 0.4));
+  }
+  50% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 8px rgba(185, 131, 8, 0.8));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(185, 131, 8, 0.4));
+  }
+}
+
 
 .gold-chart-footer {
   display: flex;
@@ -1431,7 +1448,33 @@ h2 span {
     radial-gradient(circle at top, rgba(255, 226, 122, 0.35), rgba(255, 226, 122, 0) 32%),
     linear-gradient(160deg, #4f3800 0%, #8f6d00 100%);
   border-color: rgba(255, 224, 153, 0.18);
+  position: relative;
+  overflow: hidden;
 }
+
+.gold-side-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  color: #ffe397;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.gold-side-cta:hover .gold-side-icon {
+  transform: translateY(-4px) rotate(5deg);
+}
+
+.gold-side-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
 
 .gold-side-cta .gold-side-badge {
   color: #ffe397;

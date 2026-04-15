@@ -1,149 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Precision Gold Calculator | Digirich</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="index.html" class="brand">
-          <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
-          <span>DIGIRICH</span>
-        </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
-        <nav class="nav" id="navMenu">
-          <a href="../index.html">Home</a>
-          <a href="../gold-rates/">Gold Price</a>
-          <a class="active" href="../price-calculator/">Gold Price Calculator</a>
-          <a href="../about/">About</a>
-          <a href="../faq/">FAQ</a>
-          <a href="../contact/">Contact</a>
-        </nav>
-        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
-      </div>
-    </header>
 
-    <main class="calculator-page">
-      <section class="calculator-hero">
-        <div class="container">
-          <div class="calculator-head reveal">
-            <span class="calculator-kicker">Real-Time Market Data</span>
-            <h1>Precision Gold Calculator</h1>
-            <p>
-              Calculate the exact value of your assets with live market rates,
-              premium presentation, and transparent cost breakdowns.
-            </p>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precision Gold Calculator | Digirich</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
 
-          <div class="calculator-shell reveal">
-            <div class="calculator-orb orb-left" aria-hidden="true"></div>
-            <div class="calculator-orb orb-right" aria-hidden="true"></div>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
+        <span>DIGIRICH</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="../gold-rates/">Gold Price</a>
+        <a class="active" href="../price-calculator/">Gold Price Calculator</a>
+        <a href="../about/">About</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+      <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </header>
 
-            <section class="calculator-card">
-              <div class="calculator-tabs" role="tablist" aria-label="Calculator modes">
-                <button class="active" type="button" data-mode="weight" role="tab" aria-selected="true">Convert Weight to Price</button>
-                <button type="button" data-mode="price" role="tab" aria-selected="false">Convert Price to Weight</button>
+  <main class="calculator-page">
+    <section class="calculator-hero">
+      <div class="container">
+        <div class="calculator-head reveal">
+          <span class="calculator-kicker">Real-Time Market Data</span>
+          <h1>Precision Gold Calculator</h1>
+          <p>
+            Calculate the exact value of your assets with live market rates,
+            premium presentation, and transparent cost breakdowns.
+          </p>
+        </div>
+
+        <div class="calculator-shell reveal">
+          <div class="calculator-orb orb-left" aria-hidden="true"></div>
+          <div class="calculator-orb orb-right" aria-hidden="true"></div>
+
+          <section class="calculator-card">
+            <div class="calculator-tabs" role="tablist" aria-label="Calculator modes">
+              <button class="active" type="button" data-mode="weight" role="tab" aria-selected="true">Convert Weight to
+                Price</button>
+              <button type="button" data-mode="price" role="tab" aria-selected="false">Convert Price to Weight</button>
+            </div>
+
+            <div class="calculator-body">
+              <div class="calculator-grid">
+                <div class="calculator-form">
+                  <label class="calculator-label" for="calculatorInput">Weight (grams)</label>
+                  <div class="calculator-input-wrap">
+                    <input id="calculatorInput" class="calculator-input" type="number" min="0" step="0.01" value="10" />
+                    <span class="calculator-unit" id="calculatorUnit">g</span>
+                  </div>
+
+                  <div class="calculator-purity-block">
+                    <div class="calculator-label">Select Purity</div>
+                    <div class="calculator-purities" role="radiogroup" aria-label="Gold purity">
+                      <button class="active" type="button" data-purity="24K">24K</button>
+                      <button type="button" data-purity="22K">22K</button>
+                      <button type="button" data-purity="18K">18K</button>
+                      <button type="button" data-purity="14K">14K</button>
+                    </div>
+                  </div>
+                </div>
+
+                <aside class="calculator-live-tile">
+                  <div class="live-pill">Live Ask Price</div>
+                  <strong id="calcLiveRate">&#8377;7,452.00</strong>
+                  <span id="calcLiveRateMeta">per gram</span>
+                </aside>
               </div>
 
-              <div class="calculator-body">
-                <div class="calculator-grid">
-                  <div class="calculator-form">
-                    <label class="calculator-label" for="calculatorInput">Weight (grams)</label>
-                    <div class="calculator-input-wrap">
-                      <input id="calculatorInput" class="calculator-input" type="number" min="0" step="0.01" value="10" />
-                      <span class="calculator-unit" id="calculatorUnit">g</span>
-                    </div>
-
-                    <div class="calculator-purity-block">
-                      <div class="calculator-label">Select Purity</div>
-                      <div class="calculator-purities" role="radiogroup" aria-label="Gold purity">
-                        <button class="active" type="button" data-purity="24K">24K</button>
-                        <button type="button" data-purity="22K">22K</button>
-                        <button type="button" data-purity="18K">18K</button>
-                        <button type="button" data-purity="14K">14K</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <aside class="calculator-live-tile">
-                    <div class="live-pill">Live Ask Price</div>
-                    <strong id="calcLiveRate">&#8377;7,452.00</strong>
-                    <span id="calcLiveRateMeta">per gram</span>
-                  </aside>
+              <div class="calculator-breakdown">
+                <div class="calculator-row">
+                  <span id="calcBaseLabel">Gold Value (10 g @ 24K)</span>
+                  <strong id="calcBaseValue">&#8377;74,520.00</strong>
                 </div>
-
-                <div class="calculator-breakdown">
-                  <div class="calculator-row">
-                    <span id="calcBaseLabel">Gold Value (10 g @ 24K)</span>
-                    <strong id="calcBaseValue">&#8377;74,520.00</strong>
-                  </div>
-                  <div class="calculator-row">
-                    <span id="calcMakingLabel">Making Charges 5%</span>
-                    <strong id="calcMakingValue">&#8377;3,726.00</strong>
-                  </div>
-                  <div class="calculator-row">
-                    <span id="calcGstLabel">GST 3%</span>
-                    <strong id="calcGstValue">&#8377;2,347.38</strong>
-                  </div>
-                  <div class="calculator-total">
-                    <div>
-                      <span>Total Approx. Price</span>
-                      <small id="calcTotalMeta">inclusive of charges</small>
-                    </div>
-                    <strong id="calcTotalValue">&#8377;80,593.38</strong>
-                  </div>
+                <div class="calculator-row">
+                  <span id="calcMakingLabel">Making Charges 5%</span>
+                  <strong id="calcMakingValue">&#8377;3,726.00</strong>
                 </div>
-
-                <div class="calculator-actions">
-                  <a href="gold-rates.html" class="btn btn-primary calculator-btn">View Live Gold Price</a>
+                <div class="calculator-row">
+                  <span id="calcGstLabel">GST 3%</span>
+                  <strong id="calcGstValue">&#8377;2,347.38</strong>
+                </div>
+                <div class="calculator-total">
+                  <div>
+                    <span>Total Approx. Price</span>
+                    <small id="calcTotalMeta">inclusive of charges</small>
+                  </div>
+                  <strong id="calcTotalValue">&#8377;80,593.38</strong>
                 </div>
               </div>
-            </section>
-          </div>
 
-          <section class="calculator-metrics reveal">
-            <article class="calculator-metric-card">
-              <span>Per Gram</span>
-              <strong id="metricGram">&#8377;7,452</strong>
-              <p>Current valuation for 1g of 24K pure gold.</p>
-            </article>
-            <article class="calculator-metric-card">
-              <span>Per Tola (11.66g)</span>
-              <strong id="metricTola">&#8377;86,890</strong>
-              <p>Traditional unit valuation for investment pieces.</p>
-            </article>
-            <article class="calculator-metric-card">
-              <span>Per Kilogram</span>
-              <strong id="metricKg">&#8377;74.52L</strong>
-              <p>Institutional and bulk trading market valuation.</p>
-            </article>
-          </section>
-
-          <section class="calculator-banner reveal" id="calculator-faq">
-            <div class="calculator-banner-copy">
-              <h2>Digital Clarity, Physical Security</h2>
-              <p>
-                Our rates are synced with live benchmarks so you get a clean,
-                trustworthy estimate before you buy, sell, or compare holdings.
-              </p>
-              <div class="hero-actions">
-                <a href="../gold-rates/" class="btn btn-outline">View Price History</a>
+              <div class="calculator-actions">
+                <a href="gold-rates.html" class="btn btn-primary calculator-btn">View Live Gold Price</a>
               </div>
             </div>
           </section>
         </div>
-      </section>
-    </main>
 
-    <footer class="site-footer">
+        <section class="calculator-metrics reveal">
+          <article class="calculator-metric-card">
+            <span>Per Gram</span>
+            <strong id="metricGram">&#8377;7,452</strong>
+            <p>Current valuation for 1g of 24K pure gold.</p>
+          </article>
+          <article class="calculator-metric-card">
+            <span>Per Tola (11.66g)</span>
+            <strong id="metricTola">&#8377;86,890</strong>
+            <p>Traditional unit valuation for investment pieces.</p>
+          </article>
+          <article class="calculator-metric-card">
+            <span>Per Kilogram</span>
+            <strong id="metricKg">&#8377;74.52L</strong>
+            <p>Institutional and bulk trading market valuation.</p>
+          </article>
+        </section>
+
+        <section class="calculator-banner reveal" id="calculator-faq">
+          <div class="calculator-banner-copy">
+            <h2>Digital Clarity, Physical Security</h2>
+            <p>
+              Our rates are synced with live benchmarks so you get a clean,
+              trustworthy estimate before you buy, sell, or compare holdings.
+            </p>
+            <div class="hero-actions">
+              <a href="../gold-rates/" class="btn btn-outline">View Price History</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-shell">
         <div class="footer-top">
@@ -156,25 +163,38 @@
           </div>
 
           <div class="footer-socials">
-            <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram"
+              target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2476 2476" aria-hidden="true">
-                <path d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5" fill="currentColor"></path>
+                <path
+                  d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5"
+                  fill="currentColor"></path>
               </svg>
             </a>
-            <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z"></path>
+            <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook"
+              target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path fill="currentColor"
+                  d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z">
+                </path>
               </svg>
             </a>
-            <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn"
+              target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1036 990" aria-hidden="true">
-                <path d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z" fill="currentColor"></path>
+                <path
+                  d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z"
+                  fill="currentColor"></path>
               </svg>
             </a>
-            <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank"
+              rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
                 <g clip-path="url(#clip0_84_15698)">
-                  <path fill="currentColor" d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"></path>
+                  <path fill="currentColor"
+                    d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z">
+                  </path>
                 </g>
                 <defs>
                   <clipPath id="clip0_84_15698">
@@ -211,7 +231,8 @@
           <div>
             <h3 class="footer-column-title">Connect With Us</h3>
             <div class="footer-column-links">
-              <a class="footer-contact-line" href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
+              <a class="footer-contact-line"
+                href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
               <a class="footer-contact-line" href="tel:+919355547771">+91 9355547771</a>
               <a class="footer-contact-line" href="tel:+919355547772">+91 9355547772</a>
               <span class="footer-contact-line">24 x 7 x 365 days</span>
@@ -231,7 +252,8 @@
     </div>
   </footer>
 
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/calculator.js"></script>
-  </body>
+  <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/calculator.js"></script>
+</body>
+
 </html>

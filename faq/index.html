@@ -1,745 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAQs | Digirich - Digital Gold</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <style>
-      .faq-page {
-        padding-top: 88px;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | Digirich - Digital Gold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .faq-page {
+      padding-top: 88px;
+    }
+
+    .faq-hero {
+      padding: 72px 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .faq-hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-hero-text {
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .faq-hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .rupee-icon-container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+    }
+
+    .rupee-icon {
+      width: 350px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .rupee-icon img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.2));
+      mix-blend-mode: screen;
+    }
+
+    .rupee-icon::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+      pointer-events: none;
+    }
+
+    .rupee-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .orb-glow {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent);
+      animation: orbPulse 3.5s ease-in-out infinite;
+    }
+
+    @keyframes rupeeRotate {
+      0% {
+        transform: rotateX(25deg) rotateY(0deg) rotateZ(0deg);
       }
 
+      25% {
+        transform: rotateX(25deg) rotateY(90deg) rotateZ(15deg);
+      }
+
+      50% {
+        transform: rotateX(25deg) rotateY(180deg) rotateZ(0deg);
+      }
+
+      75% {
+        transform: rotateX(25deg) rotateY(270deg) rotateZ(-15deg);
+      }
+
+      100% {
+        transform: rotateX(25deg) rotateY(360deg) rotateZ(0deg);
+      }
+    }
+
+    @keyframes orbPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    .faq-badge {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6f6546;
+      border: 1px solid #e6ddc3;
+      background: #f9f4e2;
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 20px;
+    }
+
+    .faq-hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin: 18px 0;
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+    }
+
+    .faq-hero h1 span {
+      color: #8f6d00;
+    }
+
+    .faq-hero p {
+      color: #6e6e6e;
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 20px 0 0;
+    }
+
+    .faq-section {
+      padding: 80px 0;
+      background: #ffffff;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-top: 1px solid #e5e5e5;
+      padding: 32px 0;
+      scroll-margin-top: 120px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .faq-question {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      color: #8f6d00;
+    }
+
+    .faq-number {
+      flex: 0 0 auto;
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #8f6d00;
+      min-width: 30px;
+    }
+
+    .faq-question-text {
+      flex: 1;
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #1a1c1c;
+    }
+
+    .faq-toggle {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #8f6d00;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      margin-top: 24px;
+      margin-left: 50px;
+      color: #6d6555;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+      animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      animation: revealUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .faq-hero-content {
+      animation: revealUp 0.8s ease forwards;
+    }
+
+    @media (max-width: 768px) {
       .faq-hero {
-        padding: 72px 0;
-        background: #ffffff;
-        overflow: hidden;
+        padding: 56px 0;
       }
 
       .faq-hero-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       .faq-hero-text {
-        text-align: left;
-        max-width: 600px;
+        text-align: center;
       }
 
       .faq-hero-visual {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        min-height: 400px;
+        min-height: 280px;
       }
 
       .rupee-icon-container {
-        position: relative;
-        width: 350px;
-        height: 350px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        perspective: 1200px;
+        width: 280px;
+        height: 280px;
       }
 
       .rupee-icon {
-        width: 350px;
-        height: 350px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
+        width: 280px;
+        height: 280px;
       }
 
       .rupee-icon img {
-        width: 300px;
-        height: 300px;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.2));
-        mix-blend-mode: screen;
-      }
-
-      .rupee-icon::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
-        pointer-events: none;
-      }
-
-      .rupee-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(20px);
-        pointer-events: none;
+        width: 220px;
+        height: 220px;
       }
 
       .orb-glow {
         width: 280px;
         height: 280px;
-        background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent);
-        animation: orbPulse 3.5s ease-in-out infinite;
-      }
-
-      @keyframes rupeeRotate {
-        0% {
-          transform: rotateX(25deg) rotateY(0deg) rotateZ(0deg);
-        }
-        25% {
-          transform: rotateX(25deg) rotateY(90deg) rotateZ(15deg);
-        }
-        50% {
-          transform: rotateX(25deg) rotateY(180deg) rotateZ(0deg);
-        }
-        75% {
-          transform: rotateX(25deg) rotateY(270deg) rotateZ(-15deg);
-        }
-        100% {
-          transform: rotateX(25deg) rotateY(360deg) rotateZ(0deg);
-        }
-      }
-
-      @keyframes orbPulse {
-        0%, 100% {
-          transform: scale(1);
-          opacity: 0.4;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.6;
-        }
-      }
-
-      .faq-badge {
-        display: inline-block;
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        color: #6f6546;
-        border: 1px solid #e6ddc3;
-        background: #f9f4e2;
-        border-radius: 999px;
-        padding: 8px 12px;
-        margin-bottom: 20px;
-      }
-
-      .faq-hero h1 {
-        font-size: clamp(40px, 6vw, 68px);
-        line-height: 0.98;
-        letter-spacing: -0.02em;
-        margin: 18px 0;
-        font-family: "Manrope", sans-serif;
-        font-weight: 800;
-      }
-
-      .faq-hero h1 span {
-        color: #8f6d00;
-      }
-
-      .faq-hero p {
-        color: #6e6e6e;
-        font-size: 18px;
-        line-height: 1.65;
-        margin: 20px 0 0;
-      }
-
-      .faq-section {
-        padding: 80px 0;
-        background: #ffffff;
-      }
-
-      .faq-container {
-        max-width: 900px;
-        margin: 0 auto;
-      }
-
-      .faq-list {
-        display: grid;
-        gap: 0;
       }
 
       .faq-item {
-        border-top: 1px solid #e5e5e5;
-        padding: 32px 0;
-        scroll-margin-top: 120px;
-      }
-
-      .faq-item:last-child {
-        border-bottom: 1px solid #e5e5e5;
+        padding: 24px 0;
       }
 
       .faq-question {
-        cursor: pointer;
-        user-select: none;
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        transition: color 0.3s ease;
-      }
-
-      .faq-question:hover {
-        color: #8f6d00;
-      }
-
-      .faq-number {
-        flex: 0 0 auto;
-        font-family: "Manrope", sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        color: #8f6d00;
-        min-width: 30px;
-      }
-
-      .faq-question-text {
-        flex: 1;
-        font-family: "Manrope", sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        color: #1a1c1c;
-      }
-
-      .faq-toggle {
-        flex: 0 0 auto;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: #8f6d00;
-        transition: transform 0.3s ease;
-      }
-
-      .faq-item.active .faq-toggle {
-        transform: rotate(180deg);
+        gap: 12px;
       }
 
       .faq-answer {
-        display: none;
-        margin-top: 24px;
-        margin-left: 50px;
-        color: #6d6555;
+        margin-left: 42px;
+      }
+
+      .faq-hero h1 {
+        font-size: clamp(32px, 5vw, 48px);
+      }
+
+      .faq-hero p {
         font-size: 16px;
-        line-height: 1.75;
       }
 
-      .faq-item.active .faq-answer {
-        display: block;
-        animation: slideDown 0.3s ease forwards;
+      .faq-list {
+        gap: 0;
       }
+    }
+  </style>
+</head>
 
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-12px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand">
+        <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
+        <span>DIGIRICH</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="../gold-rates/">Gold Price</a>
+        <a href="../price-calculator/">Gold Price Calculator</a>
+        <a href="../about/">About</a>
+        <a class="active" href="../faq/">FAQ</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+      <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </header>
 
-      .reveal {
-        animation: revealUp 0.6s ease forwards;
-        opacity: 0;
-      }
-
-      @keyframes revealUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .faq-hero-content {
-        animation: revealUp 0.8s ease forwards;
-      }
-
-      @media (max-width: 768px) {
-        .faq-hero {
-          padding: 56px 0;
-        }
-
-        .faq-hero-content {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        .faq-hero-text {
-          text-align: center;
-        }
-
-        .faq-hero-visual {
-          min-height: 280px;
-        }
-
-        .rupee-icon-container {
-          width: 280px;
-          height: 280px;
-        }
-
-        .rupee-icon {
-          width: 280px;
-          height: 280px;
-        }
-
-        .rupee-icon img {
-          width: 220px;
-          height: 220px;
-        }
-
-        .orb-glow {
-          width: 280px;
-          height: 280px;
-        }
-
-        .faq-item {
-          padding: 24px 0;
-        }
-
-        .faq-question {
-          gap: 12px;
-        }
-
-        .faq-answer {
-          margin-left: 42px;
-        }
-
-        .faq-hero h1 {
-          font-size: clamp(32px, 5vw, 48px);
-        }
-
-        .faq-hero p {
-          font-size: 16px;
-        }
-
-        .faq-list {
-          gap: 0;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="../index.html" class="brand">
-          <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
-          <span>DIGIRICH</span>
-        </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
-        <nav class="nav" id="navMenu">
-          <a href="../index.html">Home</a>
-          <a href="../gold-rates/">Gold Price</a>
-          <a href="../price-calculator/">Gold Price Calculator</a>
-          <a href="../about/">About</a>
-          <a class="active" href="../faq/">FAQ</a>
-          <a href="../contact/">Contact</a>
-        </nav>
-        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
-      </div>
-    </header>
-
-    <main class="faq-page">
-      <!-- Hero Section -->
-      <section class="faq-hero">
-        <div class="container">
-          <div class="faq-hero-content">
-            <div class="faq-hero-text">
-              <span class="faq-badge">QUESTIONS & ANSWERS</span>
-              <h1>Frequently Asked <span>Questions</span></h1>
-              <p>Everything you need to know about Digirich Digital Gold. Find answers to common questions about buying, selling, storage, and more.</p>
-            </div>
-            <div class="faq-hero-visual">
-              <div class="rupee-icon-container">
-                <div class="rupee-orb orb-glow"></div>
-                <div class="rupee-icon">
-                  <img src="../assets/images/faq-icon.png" alt="FAQ Icon">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ Section -->
-      <section class="faq-section">
-        <div class="container faq-container">
-          <div class="faq-list">
-            <!-- FAQ Item 1 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">1.</span>
-                <span class="faq-question-text">What is Digirich Digital Gold?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Digirich is a platform that allows you to buy, sell, and accumulate 24K 99.9% pure gold digitally. It eliminates the hassle of physical storage while providing the same value as physical gold.
-              </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">2.</span>
-                <span class="faq-question-text">Is the gold I buy on Digirich real?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes. Every gram of gold you purchase is backed by physical 24K gold bullion stored in secure, insured vaults managed by professional custodians.
-              </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">3.</span>
-                <span class="faq-question-text">How is Digital Gold different from buying physical gold from a jeweler?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                With Digirich, you can buy gold for as little as ₹10 (or a specific small denomination), avoiding the high "making charges" and storage risks associated with physical jewelry.
-              </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">4.</span>
-                <span class="faq-question-text">Who is eligible to invest in Digirich?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Any resident citizen with a valid mobile number and a bank account/UPI ID can start investing in Digital Gold through the platform.
-              </div>
-            </div>
-
-            <!-- FAQ Item 5 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">5.</span>
-                <span class="faq-question-text">What is the minimum and maximum amount I can invest?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                You can start investing with as little as ₹10. There is usually no upper limit, though higher transactions may require additional KYC verification.
-              </div>
-            </div>
-
-            <!-- FAQ Item 6 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">6.</span>
-                <span class="faq-question-text">How is the price of gold determined?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                The gold prices on Digirich are linked to international market rates and are updated in real-time. The price you see includes applicable taxes (like GST) and live market spreads.
-              </div>
-            </div>
-
-            <!-- FAQ Item 7 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">7.</span>
-                <span class="faq-question-text">Why is there a difference between the "Buy" and "Sell" price?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                The difference (spread) is due to taxes (3% GST), bank charges, and the costs of secure storage and insurance provided by the platform.
-              </div>
-            </div>
-
-            <!-- FAQ Item 8 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">8.</span>
-                <span class="faq-question-text">Can I sell my gold at any time?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes, Digirich offers 24/7 liquidity. You can sell your accumulated gold back to the platform at the current market sell price, and the money will be credited to your linked bank account.
-              </div>
-            </div>
-
-            <!-- FAQ Item 9 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">9.</span>
-                <span class="faq-question-text">Where is my physical gold stored?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Your gold is stored in world-class, high-security vaults (such as those managed by Brinks or Sequel) and is fully insured against theft or natural disasters.
-              </div>
-            </div>
-
-            <!-- FAQ Item 10 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">10.</span>
-                <span class="faq-question-text">Do I have to pay storage or locker fees?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Most Digital Gold platforms offer free storage for a specific period (e.g., 2–5 years). Please check the "Terms and Conditions" for specific duration limits on free storage.
-              </div>
-            </div>
-
-            <!-- FAQ Item 11 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">11.</span>
-                <span class="faq-question-text">Is my investment safe if the company closes?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes. The gold is held in an independent trust or vault under your name. An independent trustee is usually appointed to protect the interests of the investors.
-              </div>
-            </div>
-
-            <!-- FAQ Item 12 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">12.</span>
-                <span class="faq-question-text">Can I get physical delivery of my gold?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes. You can request physical delivery of your accumulated gold in the form of coins or bars. Once requested, the digital balance is deducted, and the gold is shipped to your doorstep.
-              </div>
-            </div>
-
-            <!-- FAQ Item 13 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">13.</span>
-                <span class="faq-question-text">Are there charges for physical delivery?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes, when opting for physical delivery, you will need to pay minting/making charges and delivery/insurance fees depending on the weight and design chosen.
-              </div>
-            </div>
-
-            <!-- FAQ Item 14 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">14.</span>
-                <span class="faq-question-text">What is the minimum weight for physical delivery?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Typically, delivery can be requested for weights starting from 0.5 grams or 1 gram, depending on the available denominations in the Digirich catalog.
-              </div>
-            </div>
-
-            <!-- FAQ Item 15 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">15.</span>
-                <span class="faq-question-text">Is KYC (Know Your Customer) mandatory?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                For small transactions, basic details may suffice. However, for cumulative purchases above a certain threshold (e.g., ₹2 Lakhs) or for physical delivery, PAN card and Aadhaar verification are mandatory.
-              </div>
-            </div>
-
-            <!-- FAQ Item 16 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">16.</span>
-                <span class="faq-question-text">Can I transfer my digital gold to another person?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Currently, most digital gold platforms only allow selling or redeeming. Check the app's "Transfer" feature to see if person-to-person (P2P) transfers are enabled.
-              </div>
-            </div>
-
-            <!-- FAQ Item 17 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">17.</span>
-                <span class="faq-question-text">How do I track my gold balance?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                You can view your total gold balance (in grams) and the current portfolio value in the "Vault" or "My Investments" section of the Digirich app.
-              </div>
-            </div>
-
-            <!-- FAQ Item 18 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">18.</span>
-                <span class="faq-question-text">What payment methods are accepted?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Digirich generally accepts UPI (Google Pay, PhonePe), Net Banking, and Debit/Credit Cards.
-              </div>
-            </div>
-
-            <!-- FAQ Item 19 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">19.</span>
-                <span class="faq-question-text">Is GST applicable to my purchase?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                Yes, as per Government regulations, a 3% GST is applicable on the purchase of Digital Gold. This is included in the final invoice at the time of buying.
-              </div>
-            </div>
-
-            <!-- FAQ Item 20 -->
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span class="faq-number">20.</span>
-                <span class="faq-question-text">Are there any hidden charges?</span>
-                <span class="faq-toggle">+</span>
-              </div>
-              <div class="faq-answer">
-                No. All costs, including the gold price and GST, are shown transparently before you make the payment. Making charges only apply if you convert your digital balance into physical coins.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
+  <main class="faq-page">
+    <!-- Hero Section -->
+    <section class="faq-hero">
       <div class="container">
-        <div class="footer-shell">
-          <div class="footer-top">
-            <div class="footer-identity">
-              <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="footer-logo">
-              <div>
-                <p class="footer-brand">DIGIRICH</p>
-                <p class="footer-tagline">Where Gold Meets Technology</p>
-              </div>
-            </div>
-
-            <div class="footer-socials">
-              <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2476 2476" aria-hidden="true">
-                  <path d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5" fill="currentColor"></path>
-                </svg>
-              </a>
-              <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="currentColor" d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z"></path>
-                </svg>
-              </a>
-              <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1036 990" aria-hidden="true">
-                  <path d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z" fill="currentColor"></path>
-                </svg>
-              </a>
-              <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                  <g clip-path="url(#clip0_84_15698)">
-                    <path fill="currentColor" d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"></path>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_84_15698">
-                      <rect width="512" height="512" fill="#fff"></rect>
-                    </clipPath>
-                  </defs>
-                </svg>
-              </a>
-            </div>
+        <div class="faq-hero-content">
+          <div class="faq-hero-text">
+            <span class="faq-badge">QUESTIONS & ANSWERS</span>
+            <h1>Frequently Asked <span>Questions</span></h1>
+            <p>Everything you need to know about Digirich Digital Gold. Find answers to common questions about buying,
+              selling, storage, and more.</p>
           </div>
-
-          <div class="footer-divider"></div>
-
-          <div class="footer-grid">
-            <div>
-              <h3 class="footer-column-title">Explore</h3>
-              <div class="footer-column-links">
-                <a href="../index.html">Home</a>
-                <a href="../gold-rates/">Live Gold Price <span class="footer-chip">Live</span></a>
-                <a href="../price-calculator/">Gold Calculator</a>
+          <div class="faq-hero-visual">
+            <div class="rupee-icon-container">
+              <div class="rupee-orb orb-glow"></div>
+              <div class="rupee-icon">
+                <img src="../assets/images/faq-icon.png" alt="FAQ Icon">
               </div>
-            </div>
-
-            <div>
-              <h3 class="footer-column-title">Company</h3>
-              <div class="footer-column-links">
-                <a href="../about/">Our Mission</a>
-                <a href="../faq/">FAQs</a>
-                <a href="../contact/">Contact Us</a>
-                <a href="../about/">About DIGIRICH</a>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="footer-column-title">Connect With Us</h3>
-              <div class="footer-column-links">
-                <a class="footer-contact-line" href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
-                <a class="footer-contact-line" href="tel:+919355547771">+91 9355547771</a>
-                <a class="footer-contact-line" href="tel:+919355547772">+91 9355547772</a>
-                <span class="footer-contact-line">24 x 7 x 365 days</span>
-                <span class="footer-contact-line">Trusted digital gold experience for modern India.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p class="footer-copy">DIGIRICH - Where Gold Meets Technology &copy; 2026</p>
-            <div class="footer-legal">
-            <a href="../privacy-policy/">Privacy Policy</a>
-              <a href="../terms-of-service/">Terms of Service</a>
             </div>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script>
-      function toggleFAQ(element) {
-        const faqItem = element.closest('.faq-item');
-        const isActive = faqItem.classList.contains('active');
-        
-        // Close all other FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-          item.classList.remove('active');
-        });
-        
-        // Toggle current item
-        if (!isActive) {
-          faqItem.classList.add('active');
-        }
-      }
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container faq-container">
+        <div class="faq-list">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">1.</span>
+              <span class="faq-question-text">What is Digirich Digital Gold?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Digirich is a platform that allows you to buy, sell, and accumulate 24K 99.9% pure gold digitally. It
+              eliminates the hassle of physical storage while providing the same value as physical gold.
+            </div>
+          </div>
 
-      // Mobile menu toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const navMenu = document.getElementById('navMenu');
-      
-      if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-          navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
+          <!-- FAQ Item 2 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">2.</span>
+              <span class="faq-question-text">Is the gold I buy on Digirich real?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes. Every gram of gold you purchase is backed by physical 24K gold bullion stored in secure, insured
+              vaults managed by professional custodians.
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">3.</span>
+              <span class="faq-question-text">How is Digital Gold different from buying physical gold from a
+                jeweler?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              With Digirich, you can buy gold for as little as ₹10 (or a specific small denomination), avoiding the high
+              "making charges" and storage risks associated with physical jewelry.
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">4.</span>
+              <span class="faq-question-text">Who is eligible to invest in Digirich?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Any resident citizen with a valid mobile number and a bank account/UPI ID can start investing in Digital
+              Gold through the platform.
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">5.</span>
+              <span class="faq-question-text">What is the minimum and maximum amount I can invest?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              You can start investing with as little as ₹10. There is usually no upper limit, though higher transactions
+              may require additional KYC verification.
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">6.</span>
+              <span class="faq-question-text">How is the price of gold determined?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              The gold prices on Digirich are linked to international market rates and are updated in real-time. The
+              price you see includes applicable taxes (like GST) and live market spreads.
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">7.</span>
+              <span class="faq-question-text">Why is there a difference between the "Buy" and "Sell" price?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              The difference (spread) is due to taxes (3% GST), bank charges, and the costs of secure storage and
+              insurance provided by the platform.
+            </div>
+          </div>
+
+          <!-- FAQ Item 8 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">8.</span>
+              <span class="faq-question-text">Can I sell my gold at any time?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes, Digirich offers 24/7 liquidity. You can sell your accumulated gold back to the platform at the
+              current market sell price, and the money will be credited to your linked bank account.
+            </div>
+          </div>
+
+          <!-- FAQ Item 9 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">9.</span>
+              <span class="faq-question-text">Where is my physical gold stored?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Your gold is stored in world-class, high-security vaults (such as those managed by Brinks or Sequel) and
+              is fully insured against theft or natural disasters.
+            </div>
+          </div>
+
+          <!-- FAQ Item 10 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">10.</span>
+              <span class="faq-question-text">Do I have to pay storage or locker fees?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Most Digital Gold platforms offer free storage for a specific period (e.g., 2–5 years). Please check the
+              "Terms and Conditions" for specific duration limits on free storage.
+            </div>
+          </div>
+
+          <!-- FAQ Item 11 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">11.</span>
+              <span class="faq-question-text">Is my investment safe if the company closes?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes. The gold is held in an independent trust or vault under your name. An independent trustee is usually
+              appointed to protect the interests of the investors.
+            </div>
+          </div>
+
+          <!-- FAQ Item 12 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">12.</span>
+              <span class="faq-question-text">Can I get physical delivery of my gold?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes. You can request physical delivery of your accumulated gold in the form of coins or bars. Once
+              requested, the digital balance is deducted, and the gold is shipped to your doorstep.
+            </div>
+          </div>
+
+          <!-- FAQ Item 13 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">13.</span>
+              <span class="faq-question-text">Are there charges for physical delivery?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes, when opting for physical delivery, you will need to pay minting/making charges and delivery/insurance
+              fees depending on the weight and design chosen.
+            </div>
+          </div>
+
+          <!-- FAQ Item 14 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">14.</span>
+              <span class="faq-question-text">What is the minimum weight for physical delivery?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Typically, delivery can be requested for weights starting from 0.5 grams or 1 gram, depending on the
+              available denominations in the Digirich catalog.
+            </div>
+          </div>
+
+          <!-- FAQ Item 15 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">15.</span>
+              <span class="faq-question-text">Is KYC (Know Your Customer) mandatory?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              For small transactions, basic details may suffice. However, for cumulative purchases above a certain
+              threshold (e.g., ₹2 Lakhs) or for physical delivery, PAN card and Aadhaar verification are mandatory.
+            </div>
+          </div>
+
+          <!-- FAQ Item 16 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">16.</span>
+              <span class="faq-question-text">Can I transfer my digital gold to another person?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Currently, most digital gold platforms only allow selling or redeeming. Check the app's "Transfer" feature
+              to see if person-to-person (P2P) transfers are enabled.
+            </div>
+          </div>
+
+          <!-- FAQ Item 17 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">17.</span>
+              <span class="faq-question-text">How do I track my gold balance?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              You can view your total gold balance (in grams) and the current portfolio value in the "Vault" or "My
+              Investments" section of the Digirich app.
+            </div>
+          </div>
+
+          <!-- FAQ Item 18 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">18.</span>
+              <span class="faq-question-text">What payment methods are accepted?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Digirich generally accepts UPI (Google Pay, PhonePe), Net Banking, and Debit/Credit Cards.
+            </div>
+          </div>
+
+          <!-- FAQ Item 19 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">19.</span>
+              <span class="faq-question-text">Is GST applicable to my purchase?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              Yes, as per Government regulations, a 3% GST is applicable on the purchase of Digital Gold. This is
+              included in the final invoice at the time of buying.
+            </div>
+          </div>
+
+          <!-- FAQ Item 20 -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span class="faq-number">20.</span>
+              <span class="faq-question-text">Are there any hidden charges?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              No. All costs, including the gold price and GST, are shown transparently before you make the payment.
+              Making charges only apply if you convert your digital balance into physical coins.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-top">
+          <div class="footer-identity">
+            <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="footer-logo">
+            <div>
+              <p class="footer-brand">DIGIRICH</p>
+              <p class="footer-tagline">Where Gold Meets Technology</p>
+            </div>
+          </div>
+
+          <div class="footer-socials">
+            <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram"
+              target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2476 2476" aria-hidden="true">
+                <path
+                  d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5"
+                  fill="currentColor"></path>
+              </svg>
+            </a>
+            <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook"
+              target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path fill="currentColor"
+                  d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z">
+                </path>
+              </svg>
+            </a>
+            <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn"
+              target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1036 990" aria-hidden="true">
+                <path
+                  d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z"
+                  fill="currentColor"></path>
+              </svg>
+            </a>
+            <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank"
+              rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                <g clip-path="url(#clip0_84_15698)">
+                  <path fill="currentColor"
+                    d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z">
+                  </path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_84_15698">
+                    <rect width="512" height="512" fill="#fff"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-grid">
+          <div>
+            <h3 class="footer-column-title">Explore</h3>
+            <div class="footer-column-links">
+              <a href="../index.html">Home</a>
+              <a href="../gold-rates/">Live Gold Price <span class="footer-chip">Live</span></a>
+              <a href="../price-calculator/">Gold Calculator</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Company</h3>
+            <div class="footer-column-links">
+              <a href="../about/">Our Mission</a>
+              <a href="../faq/">FAQs</a>
+              <a href="../contact/">Contact Us</a>
+              <a href="../about/">About DIGIRICH</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-column-title">Connect With Us</h3>
+            <div class="footer-column-links">
+              <a class="footer-contact-line"
+                href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
+              <a class="footer-contact-line" href="tel:+919355547771">+91 9355547771</a>
+              <a class="footer-contact-line" href="tel:+919355547772">+91 9355547772</a>
+              <span class="footer-contact-line">24 x 7 x 365 days</span>
+              <span class="footer-contact-line">Trusted digital gold experience for modern India.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">DIGIRICH - Where Gold Meets Technology &copy; 2026</p>
+          <div class="footer-legal">
+            <a href="../privacy-policy/">Privacy Policy</a>
+            <a href="../terms-of-service/">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFAQ(element) {
+      const faqItem = element.closest('.faq-item');
+      const isActive = faqItem.classList.contains('active');
+
+      // Close all other FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Toggle current item
+      if (!isActive) {
+        faqItem.classList.add('active');
       }
-    </script>
-  </body>
+    }
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+  </script>
+</body>
+
 </html>

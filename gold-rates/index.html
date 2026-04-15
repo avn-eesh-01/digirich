@@ -1,203 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gold Rates | Digirich</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a href="index.html" class="brand">
-          <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
-          <span>DIGIRICH</span>
-        </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
-        <nav class="nav" id="navMenu">
-          <a href="../index.html">Home</a>
-          <a class="active" href="../gold-rates/">Gold Price</a>
-          <a href="../price-calculator/">Gold Price Calculator</a>
-          <a href="../about/">About</a>
-          <a href="../faq/">FAQ</a>
-          <a href="../contact/">Contact</a>
-        </nav>
-        <a href="#" class="btn btn-primary btn-sm">Get Started</a>
-      </div>
-    </header>
 
-    <main class="gold-page">
-      <section class="gold-hero">
-        <div class="container gold-hero-inner">
-          <div class="gold-hero-copy">
-            <span class="gold-kicker">Live Digital Gold Prices</span>
-            <h1>Today&apos;s Gold Price</h1>
-            <p>
-              Track live 24K, 22K, and 18K rates, compare purity bands, and
-              understand short-term movement before you buy or accumulate.
-            </p>
-            <div class="gold-stamp">
-              Updated <span id="goldDateStamp">10 Apr 26, 01:03 am</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Rates | Digirich</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="../assets/images/digirich-logo (1).svg" alt="DIGIRICH" class="brand-logo">
+        <span>DIGIRICH</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="nav" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a class="active" href="../gold-rates/">Gold Price</a>
+        <a href="../price-calculator/">Gold Price Calculator</a>
+        <a href="../about/">About</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+      <a href="#" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </header>
+
+  <main class="gold-page">
+    <section class="gold-hero">
+      <div class="container gold-hero-inner">
+        <div class="gold-hero-copy">
+          <span class="gold-kicker">Live Digital Gold Prices</span>
+          <h1>Today&apos;s Gold Price</h1>
+          <p>
+            Track live 24K, 22K, and 18K rates, compare purity bands, and
+            understand short-term movement before you buy or accumulate.
+          </p>
+          <div class="gold-stamp">
+            Updated <span id="goldDateStamp">10 Apr 26, 01:03 am</span>
+          </div>
+        </div>
+
+        <aside class="gold-hero-panel">
+          <div class="gold-panel-heading">Showing Gold Prices For India</div>
+          <div class="gold-tier-grid">
+            <article class="gold-tier-card gold-tier-active">
+              <div class="gold-tier-icon">24K</div>
+              <p>24K Gold / 10gm</p>
+              <strong id="hero24k">&#8377;147,220.40</strong>
+            </article>
+            <article class="gold-tier-card">
+              <div class="gold-tier-icon">22K</div>
+              <p>22K Gold / 10gm</p>
+              <strong id="hero22k">&#8377;134,956.90</strong>
+            </article>
+            <article class="gold-tier-card">
+              <div class="gold-tier-icon">18K</div>
+              <p>18K Gold / 10gm</p>
+              <strong id="hero18k">&#8377;110,415.30</strong>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="gold-content section-pad">
+      <div class="container gold-layout">
+        <section class="gold-main">
+          <div class="gold-section-head">
+            <div>
+              <span class="gold-label">Gold Price Performance</span>
+              <h2>Live gold trend analysis</h2>
+            </div>
+            <label class="gold-select-wrap">
+              <span class="sr-only">Select purity</span>
+              <select id="goldPuritySelect" class="gold-select">
+                <option value="24K">24K Gold</option>
+                <option value="22K">22K Gold</option>
+                <option value="18K">18K Gold</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="gold-chart-card">
+            <div class="gold-chart-meta">
+              <div>
+                <div class="gold-meta-label">Live Gold Buy Price</div>
+                <div class="gold-price-line">
+                  <strong id="goldPricePerGram">15,753.50</strong><span>/gm</span>
+                </div>
+              </div>
+              <div class="gold-change">
+                <span id="goldChangeLabel">1 Week Change</span>
+                <strong id="goldChangeValue">+ 1.75%</strong>
+              </div>
+            </div>
+
+            <div class="gold-chart-area">
+              <div class="gold-chart-grid" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <svg class="gold-chart-svg" viewBox="0 0 760 330" role="img" aria-label="Gold price trend chart">
+                <defs>
+                  <linearGradient id="goldAreaFill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#f0c64c" stop-opacity="0.55"></stop>
+                    <stop offset="100%" stop-color="#f0c64c" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+                <path id="goldAreaPath" fill="url(#goldAreaFill)" stroke="none"></path>
+                <path id="goldLinePath" fill="none" stroke="#e0af23" stroke-width="4" stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <line id="goldFocusLine" x1="690" y1="24" x2="690" y2="290"></line>
+                <circle id="goldFocusDot" cx="690" cy="74" r="6"></circle>
+              </svg>
+              <div class="gold-chart-footer">
+                <span id="goldAxisStart">4 Apr 26</span>
+                <span id="goldAxisEnd">10 Apr 26</span>
+              </div>
+            </div>
+
+            <div class="gold-periods" id="goldPeriodButtons">
+              <button type="button" class="active" data-period="1W">1 Week</button>
+              <button type="button" data-period="1M">1 M</button>
+              <button type="button" data-period="6M">6 M</button>
+              <button type="button" data-period="1Y">1 Y</button>
+              <button type="button" data-period="3Y">3 Y</button>
+              <button type="button" data-period="5Y">5 Y</button>
             </div>
           </div>
 
-          <aside class="gold-hero-panel">
-            <div class="gold-panel-heading">Showing Gold Prices For India</div>
-            <div class="gold-tier-grid">
-              <article class="gold-tier-card gold-tier-active">
-                <div class="gold-tier-icon">24K</div>
-                <p>24K Gold / 10gm</p>
-                <strong id="hero24k">&#8377;147,220.40</strong>
-              </article>
-              <article class="gold-tier-card">
-                <div class="gold-tier-icon">22K</div>
-                <p>22K Gold / 10gm</p>
-                <strong id="hero22k">&#8377;134,956.90</strong>
-              </article>
-              <article class="gold-tier-card">
-                <div class="gold-tier-icon">18K</div>
-                <p>18K Gold / 10gm</p>
-                <strong id="hero18k">&#8377;110,415.30</strong>
-              </article>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="gold-content section-pad">
-        <div class="container gold-layout">
-          <section class="gold-main">
-            <div class="gold-section-head">
-              <div>
-                <span class="gold-label">Gold Price Performance</span>
-                <h2>Live gold trend analysis</h2>
-              </div>
-              <label class="gold-select-wrap">
-                <span class="sr-only">Select purity</span>
-                <select id="goldPuritySelect" class="gold-select">
-                  <option value="24K">24K Gold</option>
-                  <option value="22K">22K Gold</option>
-                  <option value="18K">18K Gold</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="gold-chart-card">
-              <div class="gold-chart-meta">
-                <div>
-                  <div class="gold-meta-label">Live Gold Buy Price</div>
-                  <div class="gold-price-line">
-                    <strong id="goldPricePerGram">15,753.50</strong><span>/gm</span>
-                  </div>
-                </div>
-                <div class="gold-change">
-                  <span id="goldChangeLabel">1 Week Change</span>
-                  <strong id="goldChangeValue">+ 1.75%</strong>
-                </div>
-              </div>
-
-              <div class="gold-chart-area">
-                <div class="gold-chart-grid" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <svg class="gold-chart-svg" viewBox="0 0 760 330" role="img" aria-label="Gold price trend chart">
-                  <defs>
-                    <linearGradient id="goldAreaFill" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#f0c64c" stop-opacity="0.55"></stop>
-                      <stop offset="100%" stop-color="#f0c64c" stop-opacity="0"></stop>
-                    </linearGradient>
-                  </defs>
-                  <path id="goldAreaPath" fill="url(#goldAreaFill)" stroke="none"></path>
-                  <path id="goldLinePath" fill="none" stroke="#e0af23" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-                  <line id="goldFocusLine" x1="690" y1="24" x2="690" y2="290"></line>
-                  <circle id="goldFocusDot" cx="690" cy="74" r="6"></circle>
-                </svg>
-                <div class="gold-chart-footer">
-                  <span id="goldAxisStart">4 Apr 26</span>
-                  <span id="goldAxisEnd">10 Apr 26</span>
-                </div>
-              </div>
-
-              <div class="gold-periods" id="goldPeriodButtons">
-                <button type="button" class="active" data-period="1W">1 Week</button>
-                <button type="button" data-period="1M">1 M</button>
-                <button type="button" data-period="6M">6 M</button>
-                <button type="button" data-period="1Y">1 Y</button>
-                <button type="button" data-period="3Y">3 Y</button>
-                <button type="button" data-period="5Y">5 Y</button>
-              </div>
-            </div>
-
-            <section class="gold-insights">
-              <article class="gold-insight-card">
-                <span class="gold-insight-tag">Market Snapshot</span>
-                <h3>Designed like a pricing dashboard, built for quick decisions.</h3>
-                <p>
-                  Digirich surfaces purity-wise rates, short-range movement, and
-                  long-horizon performance in one place so the page feels useful,
-                  not ornamental.
-                </p>
-              </article>
-              <article class="gold-insight-card">
-                <span class="gold-insight-tag">Purity Spread</span>
-                <ul class="gold-spread-list">
-                  <li><span>24K / gm</span><strong id="spread24k">&#8377;15,753.50</strong></li>
-                  <li><span>22K / gm</span><strong id="spread22k">&#8377;14,428.70</strong></li>
-                  <li><span>18K / gm</span><strong id="spread18k">&#8377;11,041.53</strong></li>
-                </ul>
-              </article>
-            </section>
+          <section class="gold-insights">
+            <article class="gold-insight-card">
+              <span class="gold-insight-tag">Market Snapshot</span>
+              <h3>Designed like a pricing dashboard, built for quick decisions.</h3>
+              <p>
+                Digirich surfaces purity-wise rates, short-range movement, and
+                long-horizon performance in one place so the page feels useful,
+                not ornamental.
+              </p>
+            </article>
+            <article class="gold-insight-card">
+              <span class="gold-insight-tag">Purity Spread</span>
+              <ul class="gold-spread-list">
+                <li><span>24K / gm</span><strong id="spread24k">&#8377;15,753.50</strong></li>
+                <li><span>22K / gm</span><strong id="spread22k">&#8377;14,428.70</strong></li>
+                <li><span>18K / gm</span><strong id="spread18k">&#8377;11,041.53</strong></li>
+              </ul>
+            </article>
           </section>
+        </section>
 
-          <aside class="gold-sidebar">
-            <article class="gold-side-card gold-side-cta">
-              <div class="gold-side-badge">Price Alerts</div>
-              <h3>Get alerts when gold prices move</h3>
-              <p>Stay close to the market and act at the rate you want.</p>
-              <a href="#" class="btn btn-outline">Notify Me</a>
-            </article>
+        <aside class="gold-sidebar">
+          <article class="gold-side-card gold-side-cta">
+            <div class="gold-side-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 6L10 12V24C10 32.7 15.9 40.7 24 43C32.1 40.7 38 32.7 38 24V12L24 6Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 16V33" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 21L24 16L29 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="gold-side-badge">Strategic Wealth</div>
+            <h3>The Ultimate Shield Against Inflation</h3>
+            <p>While currencies fluctuate, 24K gold has maintained its purchasing power for centuries. Anchor your portfolio with an asset that doesn't just grow—it protects.</p>
+            <a href="../#get-started" class="btn btn-outline">Start Building Wealth</a>
+          </article>
 
-            <article class="gold-side-card">
-              <h3>Savings Options For You</h3>
-              <div class="gold-option-list">
-                <a href="#"><span>Save Daily</span><strong>&#8377;10 onwards</strong></a>
-                <a href="#"><span>Save Weekly</span><strong>Auto-buy plan</strong></a>
-                <a href="#"><span>Save Monthly</span><strong>Long-term stack</strong></a>
-              </div>
-            </article>
+          <article class="gold-side-card">
+            <h3>Savings Options For You</h3>
+            <div class="gold-option-list">
+              <a href="#"><span>Save Daily</span><strong>&#8377;10 onwards</strong></a>
+              <a href="#"><span>Save Weekly</span><strong>Auto-buy plan</strong></a>
+              <a href="#"><span>Save Monthly</span><strong>Long-term stack</strong></a>
+            </div>
+          </article>
 
-            <article class="gold-side-card" id="gold-faq">
-              <h3>Quick FAQ</h3>
-              <div class="gold-faq-list">
-                <details open>
-                  <summary>How often do rates refresh?</summary>
-                  <p>Rates can be refreshed from the configured backend price source when the proxy is enabled.</p>
-                </details>
-                <details>
-                  <summary>Why do purity prices differ?</summary>
-                  <p>24K reflects near-pure gold, while 22K and 18K include alloy composition and trade at lower per-gram values.</p>
-                </details>
-                <details>
-                  <summary>Can this connect to live API data?</summary>
-                  <p>Yes. The page is already wired to the existing `api/gold-price.php` endpoint and falls back to local demo values when unavailable.</p>
-                </details>
-              </div>
-            </article>
-          </aside>
-        </div>
-      </section>
-    </main>
+          <article class="gold-side-card" id="gold-faq">
+            <h3>Quick FAQ</h3>
+            <div class="gold-faq-list">
+              <details open>
+                <summary>How often do rates refresh?</summary>
+                <p>Rates can be refreshed from the configured backend price source when the proxy is enabled.</p>
+              </details>
+              <details>
+                <summary>Why do purity prices differ?</summary>
+                <p>24K reflects near-pure gold, while 22K and 18K include alloy composition and trade at lower per-gram
+                  values.</p>
+              </details>
+              <details>
+                <summary>Can this connect to live API data?</summary>
+                <p>Yes. The page is already wired to the existing `api/gold-price.php` endpoint and falls back to local
+                  demo values when unavailable.</p>
+              </details>
+            </div>
+          </article>
+        </aside>
+      </div>
+    </section>
+  </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-shell">
         <div class="footer-top">
@@ -210,25 +226,38 @@
           </div>
 
           <div class="footer-socials">
-            <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://www.instagram.com/digirichindia/?hl=en" aria-label="Instagram"
+              target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2476 2476" aria-hidden="true">
-                <path d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5" fill="currentColor"></path>
+                <path
+                  d="M825.4 1238c0-227.9 184.7-412.7 412.6-412.7 227.9 0 412.7 184.8 412.7 412.7 0 227.9-184.8 412.7-412.7 412.7-227.9 0-412.6-184.8-412.6-412.7m-223.1 0c0 351.1 284.6 635.7 635.7 635.7s635.7-284.6 635.7-635.7-284.6-635.7-635.7-635.7S602.3 886.9 602.3 1238m1148-660.9c0 82 66.5 148.6 148.6 148.6 82 0 148.6-66.6 148.6-148.6s-66.5-148.5-148.6-148.5-148.6 66.5-148.6 148.5M737.8 2245.7c-120.7-5.5-186.3-25.6-229.9-42.6-57.8-22.5-99-49.3-142.4-92.6-43.3-43.3-70.2-84.5-92.6-142.3-17-43.6-37.1-109.2-42.6-229.9-6-130.5-7.2-169.7-7.2-500.3s1.3-369.7 7.2-500.3c5.5-120.7 25.7-186.2 42.6-229.9 22.5-57.8 49.3-99 92.6-142.4 43.3-43.3 84.5-70.2 142.4-92.6 43.6-17 109.2-37.1 229.9-42.6 130.5-6 169.7-7.2 500.2-7.2 330.6 0 369.7 1.3 500.3 7.2 120.7 5.5 186.2 25.7 229.9 42.6 57.8 22.4 99 49.3 142.4 92.6 43.3 43.3 70.1 84.6 92.6 142.4 17 43.6 37.1 109.2 42.6 229.9 6 130.6 7.2 169.7 7.2 500.3 0 330.5-1.2 369.7-7.2 500.3-5.5 120.7-25.7 186.3-42.6 229.9-22.5 57.8-49.3 99-92.6 142.3-43.3 43.3-84.6 70.1-142.4 92.6-43.6 17-109.2 37.1-229.9 42.6-130.5 6-169.7 7.2-500.3 7.2-330.5 0-369.7-1.2-500.2-7.2M727.6 7.5c-131.8 6-221.8 26.9-300.5 57.5-81.4 31.6-150.4 74-219.3 142.8C139 276.6 96.6 345.6 65 427.1 34.4 505.8 13.5 595.8 7.5 727.6 1.4 859.6 0 901.8 0 1238s1.4 378.4 7.5 510.4c6 131.8 26.9 221.8 57.5 300.5 31.6 81.4 73.9 150.5 142.8 219.3 68.8 68.8 137.8 111.1 219.3 142.8 78.8 30.6 168.7 51.5 300.5 57.5 132.1 6 174.2 7.5 510.4 7.5 336.3 0 378.4-1.4 510.4-7.5 131.8-6 221.8-26.9 300.5-57.5 81.4-31.7 150.4-74 219.3-142.8 68.8-68.8 111.1-137.9 142.8-219.3 30.6-78.7 51.6-168.7 57.5-300.5 6-132.1 7.4-174.2 7.4-510.4s-1.4-378.4-7.4-510.4c-6-131.8-26.9-221.8-57.5-300.5-31.7-81.4-74-150.4-142.8-219.3C2199.4 139 2130.3 96.6 2049 65c-78.8-30.6-168.8-51.6-300.5-57.5-132-6-174.2-7.5-510.4-7.5-336.3 0-378.4 1.4-510.5 7.5"
+                  fill="currentColor"></path>
               </svg>
             </a>
-            <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z"></path>
+            <a class="footer-social" href="https://www.facebook.com/profile.php?id=61570777766305" aria-label="Facebook"
+              target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path fill="currentColor"
+                  d="M17.9902344,1.5957031c-1.0087891-0.1067505-2.0227051-0.1586304-3.0371094-0.1552734C11.5898438,1.4404297,9.5,3.5819702,9.5,7.0302734v2.3408203H6.6748047c-0.276001-0.0001831-0.4998779,0.2234497-0.5,0.4994507v3.8511353c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5H9.5v7.71875c-0.0001831,0.276001,0.2234497,0.4998169,0.4994507,0.5h3.9780884c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507v-7.7192993h2.8164673c0.2512207-0.000061,0.463501-0.1864014,0.4960938-0.4355469l0.4970703-3.8505859c0.0357056-0.2736816-0.1572266-0.5245361-0.4309692-0.5602417c-0.0216064-0.0028076-0.043335-0.0042114-0.0651245-0.0042114h-3.3135376V7.4121094c0-0.9697266,0.1953125-1.375,1.4082031-1.375l2.0390625-0.0009766c0.276001,0.0001221,0.4998169-0.2234497,0.5-0.4994507V2.0917969C18.4248657,1.8408203,18.2390137,1.6286621,17.9902344,1.5957031z M17.4248047,5.0361328l-1.5390625,0.0009766c-2.1582031,0-2.4082031,1.3554688-2.4082031,2.375v2.4590454c-0.0001221,0.2759399,0.2234497,0.4998169,0.4994507,0.499939h3.2456665l-0.3681641,2.8505859h-2.8769531c-0.276001-0.0001221-0.4998169,0.2234497-0.5,0.4994507v7.7192993H10.5v-7.71875c0.0001831-0.276001-0.2234497-0.4998169-0.4993896-0.5H7.1748047v-2.8505859H10c0.276001,0.0001831,0.4998169-0.2234497,0.5-0.4994507V7.0302734c0-2.8740234,1.664978-4.5898438,4.453125-4.5898438c1.0087891,0,1.9199219,0.0546875,2.4716797,0.1025391V5.0361328z">
+                </path>
               </svg>
             </a>
-            <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://www.linkedin.com/in/digirich-india-29a139403/" aria-label="LinkedIn"
+              target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1036 990" aria-hidden="true">
-                <path d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z" fill="currentColor"></path>
+                <path
+                  d="M0 120c0-33.334 11.667-60.834 35-82.5C58.333 15.833 88.667 5 126 5c36.667 0 66.333 10.666 89 32 23.333 22 35 50.666 35 86 0 32-11.333 58.666-34 80-23.333 22-54 33-92 33h-1c-36.667 0-66.333-11-89-33S0 153.333 0 120zm13 875V327h222v668H13zm345 0h222V622c0-23.334 2.667-41.334 8-54 9.333-22.667 23.5-41.834 42.5-57.5 19-15.667 42.833-23.5 71.5-23.5 74.667 0 112 50.333 112 151v357h222V612c0-98.667-23.333-173.5-70-224.5S857.667 311 781 311c-86 0-153 37-201 111v2h-1l1-2v-95H358c1.333 21.333 2 87.666 2 199 0 111.333-.667 267.666-2 469z"
+                  fill="currentColor"></path>
               </svg>
             </a>
-            <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <a class="footer-social" href="https://x.com/DigirichIndia" aria-label="X" target="_blank"
+              rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
                 <g clip-path="url(#clip0_84_15698)">
-                  <path fill="currentColor" d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"></path>
+                  <path fill="currentColor"
+                    d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z">
+                  </path>
                 </g>
                 <defs>
                   <clipPath id="clip0_84_15698">
@@ -265,7 +294,8 @@
           <div>
             <h3 class="footer-column-title">Connect With Us</h3>
             <div class="footer-column-links">
-              <a class="footer-contact-line" href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
+              <a class="footer-contact-line"
+                href="mailto:digirichinternational@gmail.com">digirichinternational@gmail.com</a>
               <a class="footer-contact-line" href="tel:+919355547771">+91 9355547771</a>
               <a class="footer-contact-line" href="tel:+919355547772">+91 9355547772</a>
               <span class="footer-contact-line">24 x 7 x 365 days</span>
@@ -285,7 +315,8 @@
     </div>
   </footer>
 
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/gold-price.js"></script>
-  </body>
+  <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/gold-price.js"></script>
+</body>
+
 </html>
