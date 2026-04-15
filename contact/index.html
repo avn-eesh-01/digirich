@@ -1177,111 +1177,122 @@
     gsap.registerPlugin(ScrollTrigger);
 
     document.addEventListener('DOMContentLoaded', () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      let mm = gsap.matchMedia();
 
-      // Hero animations
-      tl.from('.contact-hero-badge', { autoAlpha: 0, y: -20, duration: 0.8 })
-        .from('.contact-hero h1', { autoAlpha: 0, y: 20, duration: 1 }, "-=0.4")
-        .from('.contact-hero p', { autoAlpha: 0, y: 20, duration: 1 }, "-=0.6")
-        .from('.contact-card', { 
-          autoAlpha: 0, 
-          y: 40, 
-          duration: 0.8, 
-          stagger: 0.2,
-          clearProps: "all" // Clear all to avoid conflict with tilt
-        }, "-=0.6");
+      mm.add("(min-width: 992px)", () => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Scroll reveals for sections
-      gsap.from('.address-banner', {
-        scrollTrigger: {
-          trigger: '.address-banner',
-          start: 'top 85%',
-        },
-        autoAlpha: 0,
-        y: 40,
-        duration: 1
-      });
+        // Initial state for desktop only
+        gsap.set(['.contact-hero-badge', '.contact-hero h1', '.contact-hero p', '.contact-card'], { 
+          autoAlpha: 0 
+        });
+        gsap.set('.contact-hero-badge', { y: -20 });
+        gsap.set(['.contact-hero h1', '.contact-hero p'], { y: 20 });
+        gsap.set('.contact-card', { y: 40 });
 
-      gsap.from('.avail-card', {
-        scrollTrigger: {
-          trigger: '.availability-grid',
-          start: 'top 85%',
-        },
-        autoAlpha: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.3
-      });
+        // Hero animations
+        tl.to('.contact-hero-badge', { autoAlpha: 1, y: 0, duration: 0.8 })
+          .to('.contact-hero h1', { autoAlpha: 1, y: 0, duration: 1 }, "-=0.4")
+          .to('.contact-hero p', { autoAlpha: 1, y: 0, duration: 1 }, "-=0.6")
+          .to('.contact-card', { 
+            autoAlpha: 1, 
+            y: 0, 
+            duration: 0.8, 
+            stagger: 0.2,
+            clearProps: "all" 
+          }, "-=0.6");
 
-      gsap.from('.contact-cta-box', {
-        scrollTrigger: {
-          trigger: '.contact-cta-box',
-          start: 'top 90%',
-        },
-        autoAlpha: 0,
-        scale: 0.95,
-        duration: 1.2,
-        ease: "elastic.out(1, 0.8)"
-      });
-    });
-
-    // Hero Parallax Effect
-    document.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5) * 30;
-      const yPos = (clientY / window.innerHeight - 0.5) * 30;
-
-      gsap.to('.contact-hero', {
-        backgroundPosition: `${50 + xPos * 0.1}% ${yPos * 0.1}%`,
-        duration: 0.7,
-        ease: "power2.out"
-      });
-    });
-
-    // Premium Card Tilt Effect
-    document.querySelectorAll('.contact-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-
-        gsap.to(card, {
-          rotateX: rotateX,
-          rotateY: rotateY,
-          translateZ: 20,
-          scale: 1.02,
-          duration: 0.4,
-          ease: "power3.out",
-          overwrite: true
+        // Scroll reveals for sections
+        gsap.from('.address-banner', {
+          scrollTrigger: {
+            trigger: '.address-banner',
+            start: 'top 85%',
+          },
+          autoAlpha: 0,
+          y: 40,
+          duration: 1
         });
 
-        // Icon parallax inside card
-        const icon = card.querySelector('.contact-card-icon');
-        gsap.to(icon, {
-          x: rotateY * 2,
-          y: -rotateX * 2,
-          duration: 0.4,
-          ease: "power3.out"
+        gsap.from('.avail-card', {
+          scrollTrigger: {
+            trigger: '.availability-grid',
+            start: 'top 85%',
+          },
+          autoAlpha: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.3
         });
-      });
 
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotateX: 0,
-          rotateY: 0,
-          translateZ: 0,
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.7)"
+        gsap.from('.contact-cta-box', {
+          scrollTrigger: {
+            trigger: '.contact-cta-box',
+            start: 'top 90%',
+          },
+          autoAlpha: 0,
+          scale: 0.95,
+          duration: 1.2,
+          ease: "elastic.out(1, 0.8)"
         });
-        
-        const icon = card.querySelector('.contact-card-icon');
-        gsap.to(icon, { x: 0, y: 0, duration: 0.6 });
+
+        // Hero Parallax Effect
+        const heroMouseMove = (e) => {
+          const { clientX, clientY } = e;
+          const xPos = (clientX / window.innerWidth - 0.5) * 30;
+          const yPos = (clientY / window.innerHeight - 0.5) * 30;
+
+          gsap.to('.contact-hero', {
+            backgroundPosition: `${50 + xPos * 0.1}% ${yPos * 0.1}%`,
+            duration: 0.7,
+            ease: "power2.out"
+          });
+        };
+        document.addEventListener('mousemove', heroMouseMove);
+
+        // Premium Card Tilt Effect
+        const cards = document.querySelectorAll('.contact-card');
+        cards.forEach(card => {
+          const mouseMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            gsap.to(card, {
+              rotateX: rotateX,
+              rotateY: rotateY,
+              translateZ: 20,
+              scale: 1.02,
+              duration: 0.4,
+              ease: "power3.out",
+              overwrite: true
+            });
+
+            const icon = card.querySelector('.contact-card-icon');
+            gsap.to(icon, { x: rotateY * 2, y: -rotateX * 2, duration: 0.4 });
+          };
+
+          const mouseLeave = () => {
+            gsap.to(card, {
+              rotateX: 0, rotateY: 0, translateZ: 0, scale: 1,
+              duration: 0.6, ease: "back.out(1.7)"
+            });
+            const icon = card.querySelector('.contact-card-icon');
+            gsap.to(icon, { x: 0, y: 0, duration: 0.6 });
+          };
+
+          card.addEventListener('mousemove', mouseMove);
+          card.addEventListener('mouseleave', mouseLeave);
+        });
+
+        return () => {
+          // Cleanup
+          document.removeEventListener('mousemove', heroMouseMove);
+          gsap.set(['.contact-hero', '.contact-hero-badge', '.contact-hero h1', '.contact-hero p', '.contact-card', '.address-banner', '.avail-card', '.contact-cta-box'], { clearProps: "all" });
+        };
       });
     });
   </script>

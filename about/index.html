@@ -636,8 +636,7 @@
 
     .founder-card {
       text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
+      /* Initial state handled by GSAP matchMedia to allow mobile fallback */
     }
 
     .trust {
@@ -1333,66 +1332,79 @@
 
     // Team Section Animations
     document.addEventListener('DOMContentLoaded', () => {
-      // Entrance Animation
-      gsap.to('.founder-card', {
-        scrollTrigger: {
-          trigger: '.founders',
-          start: 'top 85%',
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.3,
-        ease: "power3.out"
-      });
+      let mm = gsap.matchMedia();
 
-      // Hover Interaction: 3D Tilt
-      document.querySelectorAll('.founder-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -8;
-          const rotateY = ((x - centerX) / centerX) * 8;
+      mm.add("(min-width: 992px)", () => {
+        // Initial state for desktop only
+        gsap.set('.founder-card', { opacity: 0, y: 30 });
 
-          gsap.to(card, {
-            rotateX: rotateX,
-            rotateY: rotateY,
-            scale: 1.05,
-            duration: 0.5,
-            ease: "power2.out",
-            overwrite: true
+        // Entrance Animation
+        gsap.to('.founder-card', {
+          scrollTrigger: {
+            trigger: '.founders',
+            start: 'top 85%',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.3,
+          ease: "power3.out"
+        });
+
+        // Hover Interaction: 3D Tilt
+        document.querySelectorAll('.founder-card').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            gsap.to(card, {
+              rotateX: rotateX,
+              rotateY: rotateY,
+              scale: 1.05,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: true
+            });
+
+            // Animate Ring on hover
+            const ring = card.querySelector('.founder-ring');
+            gsap.to(ring, {
+              rotate: rotateY * 5,
+              scale: 1.1,
+              borderColor: "#d4af37",
+              duration: 0.5
+            });
           });
 
-          // Animate Ring on hover
-          const ring = card.querySelector('.founder-ring');
-          gsap.to(ring, {
-            rotate: rotateY * 5,
-            scale: 1.1,
-            borderColor: "#d4af37",
-            duration: 0.5
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              rotateX: 0,
+              rotateY: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: "back.out(1.7)"
+            });
+
+            const ring = card.querySelector('.founder-ring');
+            gsap.to(ring, {
+              rotate: 0,
+              scale: 1,
+              borderColor: "rgba(212, 175, 55, 0.4)",
+              duration: 0.8
+            });
           });
         });
 
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            rotateX: 0,
-            rotateY: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)"
-          });
-
-          const ring = card.querySelector('.founder-ring');
-          gsap.to(ring, {
-            rotate: 0,
-            scale: 1,
-            borderColor: "rgba(212, 175, 55, 0.4)",
-            duration: 0.8
-          });
-        });
+        return () => {
+          // Cleanup
+          gsap.set('.founder-card', { clearProps: "all" });
+          gsap.set('.founder-ring', { clearProps: "all" });
+        };
       });
     });
   </script>
