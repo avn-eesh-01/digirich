@@ -16,7 +16,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon-gold.svg" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
@@ -1057,11 +1057,16 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
       <nav class="nav" id="navMenu">
         <a href="../index.html">Home</a>
-        <a href="../gold-rates/">Gold Price</a>
+        <a href="../gold-rates/">Live Gold Price <span class="live-tag">LIVE</span></a>
         <a href="../price-calculator/">Gold Price Calculator</a>
-        <a class="active" href="../about/">About</a>
-        <a href="../faq/">FAQ</a>
-        <a href="../contact/">Contact</a>
+        <div class="nav-dropdown">
+          <a class="active" href="../about/" class="dropdown-toggle">About <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-menu">
+            <a class="active" href="../about/">Our Mission</a>
+            <a href="../faq/">FAQs</a>
+            <a href="../contact/">Contact Us</a>
+          </div>
+        </div>
       </nav>
       <a href="#" class="btn btn-primary btn-sm">Get Started</a>
     </div>
@@ -1321,10 +1326,10 @@
           <div>
             <h3 class="footer-column-title">Company</h3>
             <div class="footer-column-links">
+              <a href="../about/">About DIGIRICH</a>
               <a href="../about/">Our Mission</a>
               <a href="../faq/">FAQs</a>
               <a href="../contact/">Contact Us</a>
-              <a href="../about/">About DIGIRICH</a>
             </div>
           </div>
 

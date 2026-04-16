@@ -7,6 +7,25 @@ if (menuToggle && navMenu) {
   });
 }
 
+// Mobile Dropdown Toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      // Only handle click for dropdown functionality if we're on a mobile-sized screen
+      if (window.innerWidth <= 960) {
+        e.preventDefault();
+        const parent = toggle.closest(".nav-dropdown");
+        if (parent) {
+          parent.classList.toggle("open");
+        }
+      }
+    });
+  });
+});
+
+
 const visual = document.querySelector(".hero-visual");
 const shadow = document.querySelector(".hero-shadow");
 const orbitCore = document.querySelector(".orbit-core");
