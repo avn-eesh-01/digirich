@@ -3,7 +3,9 @@ const navMenu = document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
   menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
     navMenu.classList.toggle("open");
+    document.body.classList.toggle("no-scroll");
   });
 }
 
@@ -13,15 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
   
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener("click", (e) => {
-      // Only handle click for dropdown functionality if we're on a mobile-sized screen
-      if (window.innerWidth <= 960) {
-        e.preventDefault();
-        const parent = toggle.closest(".nav-dropdown");
-        if (parent) {
-          parent.classList.toggle("open");
-        }
+      // Prevent navigation for the dropdown trigger
+      e.preventDefault();
+      
+      const parent = toggle.closest(".nav-dropdown");
+      if (parent) {
+        // Toggle the open class for both desktop and mobile
+        parent.classList.toggle("open");
       }
     });
+
+    toggle.addEventListener("dblclick", (e) => {
+      const parent = toggle.closest(".nav-dropdown");
+      if (parent) {
+        // Explicitly remove open class on double click
+        parent.classList.remove("open");
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-dropdown")) {
+      document.querySelectorAll(".nav-dropdown.open").forEach(dropdown => {
+        dropdown.classList.remove("open");
+      });
+    }
   });
 });
 
